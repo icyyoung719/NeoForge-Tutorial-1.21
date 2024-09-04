@@ -45,9 +45,11 @@ public class ModCreativeModeTabs {
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "bismuth_block_tab"))
                     .title(Component.translatable("creativetab.tutorialmod.sapphire_items"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModBlocks.BISMUTH_BLOCK.get());
-                        output.accept(ModBlocks.BISMUTH_ORE.get());
                         output.accept(ModItems.SAPPHIRE.get());
+                        output.accept(ModItems.RAW_SAPPHIRE.get());
+                        output.accept(ModBlocks.SAPPHIRE_BLOCK.get());
+                        output.accept(ModBlocks.SAPPHIRE_ORE.get());
+                        output.accept(ModBlocks.RAW_SAPPHIRE_BLOCK);
                     }).build());
 
     public static void register(IEventBus eventBus){

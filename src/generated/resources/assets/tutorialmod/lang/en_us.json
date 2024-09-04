@@ -1,10 +1,14 @@
 {
   "block.tutorialmod.bismuth_block": "Bismuth Block",
   "block.tutorialmod.bismuth_ore": "Bismuth Ore",
+  "block.tutorialmod.raw_sapphire_block": "Raw Sapphire Block",
+  "block.tutorialmod.sapphire_block": "Sapphire Block",
+  "block.tutorialmod.sapphire_ore": "Sapphire Ore",
   "creativetab.tutorialmod.bismuth_block": "Bismuth Blocks",
   "creativetab.tutorialmod.bismuth_items": "Bismuth Items",
   "creativetab.tutorialmod.sapphire_items": "Creative Mod Tab",
   "item.tutorialmod.bismuth": "Bismuth",
   "item.tutorialmod.raw_bismuth": "Raw Bismuth",
+  "item.tutorialmod.raw_sapphire": "Raw Sapphire",
   "item.tutorialmod.sapphire": "Sapphire"
 }

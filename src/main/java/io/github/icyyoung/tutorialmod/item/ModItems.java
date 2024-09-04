@@ -23,7 +23,8 @@ public class ModItems {
 
     public static final DeferredItem<Item> SAPPHIRE = ITEMS.register("sapphire",
             () -> new Item(new Item.Properties()));
-
+    public static final DeferredItem<Item> RAW_SAPPHIRE = ITEMS.register("raw_sapphire",
+            () -> new Item(new Item.Properties()));
 
 
 

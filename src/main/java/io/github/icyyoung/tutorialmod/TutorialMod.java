@@ -64,11 +64,15 @@ public class TutorialMod
             event.accept(ModItems.BISMUTH);
             event.accept(ModItems.RAW_BISMUTH);
             event.accept(ModItems.SAPPHIRE);
+            event.accept(ModItems.RAW_SAPPHIRE);
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.BISMUTH_BLOCK);
             event.accept(ModBlocks.BISMUTH_ORE);
+            event.accept(ModBlocks.SAPPHIRE_BLOCK);
+            event.accept(ModBlocks.SAPPHIRE_ORE);
+            event.accept(ModBlocks.RAW_SAPPHIRE_BLOCK);
         }
     }
 

@@ -24,9 +24,13 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.BISMUTH.get(), "Bismuth");
         add(ModItems.RAW_BISMUTH.get(), "Raw Bismuth");
         add(ModItems.SAPPHIRE.get(), "Sapphire");
+        add(ModItems.RAW_SAPPHIRE.get(), "Raw Sapphire");
 
         add(ModBlocks.BISMUTH_BLOCK.get(), "Bismuth Block");
         add(ModBlocks.BISMUTH_ORE.get(), "Bismuth Ore");
+        add(ModBlocks.SAPPHIRE_BLOCK.get(), "Sapphire Block");
+        add(ModBlocks.SAPPHIRE_ORE.get(), "Sapphire Ore");
+        add(ModBlocks.RAW_SAPPHIRE_BLOCK.get(), "Raw Sapphire Block");
 
         //不能直接以这种方式汉化Tab的名称
         add(ModCreativeModeTabs.BISMUTH_ITEM_TAB.get().getDisplayName().getString(), "Bismuth Items");

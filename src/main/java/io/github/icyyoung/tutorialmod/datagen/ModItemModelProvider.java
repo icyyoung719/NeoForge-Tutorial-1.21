@@ -24,9 +24,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.BISMUTH.get());
         basicItem(ModItems.RAW_BISMUTH.get());
         basicItem(ModItems.SAPPHIRE.get());
+        basicItem(ModItems.RAW_SAPPHIRE.get());
 
         //简单的block在物品栏中的模型
         withExistingParent(ModBlocks.BISMUTH_BLOCK.getRegisteredName(),modLoc("block/bismuth_block"));
         withExistingParent(ModBlocks.BISMUTH_ORE.getRegisteredName(),modLoc("block/bismuth_ore"));
+        withExistingParent(ModBlocks.SAPPHIRE_BLOCK.getRegisteredName(),modLoc("block/sapphire_block"));
+        withExistingParent(ModBlocks.SAPPHIRE_ORE.getRegisteredName(),modLoc("block/sapphire_ore"));
+        withExistingParent(ModBlocks.RAW_SAPPHIRE_BLOCK.getRegisteredName(),modLoc("block/raw_sapphire_block"));
     }
 }

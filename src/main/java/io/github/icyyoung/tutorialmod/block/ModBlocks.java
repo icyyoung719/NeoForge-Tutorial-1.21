@@ -6,6 +6,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -32,6 +33,19 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BISMUTH_ORE = registerBlock("bismuth_ore",
          () -> new DropExperienceBlock(UniformInt.of(2, 4),
                  BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> SAPPHIRE_BLOCK = registerBlock("sapphire_block",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
+    public static final DeferredBlock<Block> RAW_SAPPHIRE_BLOCK = registerBlock("raw_sapphire_block",
+            ()-> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
+
+    public static final DeferredBlock<Block> SAPPHIRE_ORE = registerBlock("sapphire_ore",
+            () -> new DropExperienceBlock( UniformInt.of(2, 4),BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+                    .strength(2f).requiresCorrectToolForDrops()));
+
+
+
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block){
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
