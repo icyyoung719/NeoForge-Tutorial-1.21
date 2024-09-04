@@ -1,5 +1,6 @@
 package io.github.icyyoung.tutorialmod;
 
+import io.github.icyyoung.tutorialmod.block.ModBlocks;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -40,6 +41,7 @@ public class TutorialMod
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -58,6 +60,10 @@ public class TutorialMod
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.BISMUTH);
             event.accept(ModItems.RAW_BISMUTH);
+        }
+
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(ModBlocks.BISMUTH_BLOCK);
         }
     }
 
