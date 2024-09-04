@@ -3,7 +3,8 @@
   "block.tutorialmod.bismuth_ore": "Bismuth Ore",
   "creativetab.tutorialmod.bismuth_block": "Bismuth Blocks",
   "creativetab.tutorialmod.bismuth_items": "Bismuth Items",
+  "creativetab.tutorialmod.sapphire_items": "Creative Mod Tab",
   "item.tutorialmod.bismuth": "Bismuth",
   "item.tutorialmod.raw_bismuth": "Raw Bismuth",
-  "minecraft.creative_mode_tab": "Creative Mod Tab"
+  "item.tutorialmod.sapphire": "Sapphire"
 }

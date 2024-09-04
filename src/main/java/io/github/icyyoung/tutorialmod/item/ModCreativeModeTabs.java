@@ -40,6 +40,16 @@ public class ModCreativeModeTabs {
                     }).build());
 
 
+    public static final Supplier<CreativeModeTab> TUTORIAL_TAB = CREATIVE_MOD_TAB.register("tutorial_tab",
+            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.SAPPHIRE.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "bismuth_block_tab"))
+                    .title(Component.translatable("creativetab.tutorialmod.sapphire_items"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.BISMUTH_BLOCK.get());
+                        output.accept(ModBlocks.BISMUTH_ORE.get());
+                        output.accept(ModItems.SAPPHIRE.get());
+                    }).build());
+
     public static void register(IEventBus eventBus){
         CREATIVE_MOD_TAB.register(eventBus);
     }
