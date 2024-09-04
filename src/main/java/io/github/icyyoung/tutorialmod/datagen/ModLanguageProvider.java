@@ -13,9 +13,9 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
  * @Date 2024/9/4
  */
 
-public class ModLanguageGenerator extends LanguageProvider {
+public class ModLanguageProvider extends LanguageProvider {
 
-    public ModLanguageGenerator(PackOutput output, String locale) {
+    public ModLanguageProvider(PackOutput output, String locale) {
         super(output, TutorialMod.MOD_ID, locale);
     }
 

@@ -13,8 +13,8 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
  * @Date 2024/9/4
  */
 
-public class ModItemModelGenerator extends ItemModelProvider {
-    public ModItemModelGenerator(PackOutput output, ExistingFileHelper existingFileHelper) {
+public class ModItemModelProvider extends ItemModelProvider {
+    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, TutorialMod.MOD_ID, existingFileHelper);
     }
 

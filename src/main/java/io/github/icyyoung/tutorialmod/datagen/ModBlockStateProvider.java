@@ -13,8 +13,8 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
  * @Date 2024/9/4
  */
 
-public class ModBlockStateGenerator extends BlockStateProvider {
-    public ModBlockStateGenerator(PackOutput output, ExistingFileHelper exFileHelper) {
+public class ModBlockStateProvider extends BlockStateProvider {
+    public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, TutorialMod.MOD_ID, exFileHelper);
     }
 
