@@ -25,6 +25,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
         simpleBlock(ModBlocks.SAPPHIRE_BLOCK.get());
         simpleBlock(ModBlocks.SAPPHIRE_ORE.get());
+        simpleBlock(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+        simpleBlock(ModBlocks.NETHER_SAPPHIRE_ORE.get());
+        simpleBlock(ModBlocks.END_STONE_SAPPHIRE_ORE.get());
     }
 
 

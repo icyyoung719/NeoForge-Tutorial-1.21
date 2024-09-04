@@ -73,6 +73,9 @@ public class TutorialMod
             event.accept(ModBlocks.SAPPHIRE_BLOCK);
             event.accept(ModBlocks.SAPPHIRE_ORE);
             event.accept(ModBlocks.RAW_SAPPHIRE_BLOCK);
+            event.accept(ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
+            event.accept(ModBlocks.NETHER_SAPPHIRE_ORE);
+            event.accept(ModBlocks.END_STONE_SAPPHIRE_ORE);
         }
     }
 

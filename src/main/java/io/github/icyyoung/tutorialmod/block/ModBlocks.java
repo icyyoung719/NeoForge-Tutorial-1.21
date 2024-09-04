@@ -40,9 +40,21 @@ public class ModBlocks {
             ()-> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
 
     public static final DeferredBlock<Block> SAPPHIRE_ORE = registerBlock("sapphire_ore",
-            () -> new DropExperienceBlock( UniformInt.of(2, 4),BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+            () -> new DropExperienceBlock( UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
                     .strength(2f).requiresCorrectToolForDrops()));
-
+    public static final DeferredBlock<Block> DEEPSLATE_SAPPHIRE_ORE = registerBlock("deepslate_sapphire_ore",
+            () -> new DropExperienceBlock(UniformInt.of(3, 7),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE)
+                    .strength(3f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> NETHER_SAPPHIRE_ORE = registerBlock("nether_sapphire_ore",
+            () -> new DropExperienceBlock(UniformInt.of(3, 7),
+                 BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)
+                 .strength(1f).requiresCorrectToolForDrops()));
+    public static final DeferredBlock<Block> END_STONE_SAPPHIRE_ORE = registerBlock("end_stone_sapphire_ore",
+            () -> new DropExperienceBlock(UniformInt.of(3, 7),
+                 BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)
+                 .strength(5f).requiresCorrectToolForDrops()));
 
 
 
