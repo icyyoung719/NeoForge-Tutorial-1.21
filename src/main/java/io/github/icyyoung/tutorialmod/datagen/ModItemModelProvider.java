@@ -39,5 +39,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModBlocks.NETHER_SAPPHIRE_ORE.getRegisteredName(),modLoc("block/nether_sapphire_ore"));
         withExistingParent(ModBlocks.END_STONE_SAPPHIRE_ORE.getRegisteredName(),modLoc("block/end_stone_sapphire_ore"));
         withExistingParent(ModBlocks.SOUND_BLOCK.getRegisteredName(),modLoc("block/sound_block"));
+
     }
+
+
 }

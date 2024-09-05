@@ -39,6 +39,16 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.END_STONE_SAPPHIRE_ORE.get(), "End Stone Sapphire Ore");
         add(ModBlocks.SOUND_BLOCK.get(), "Sound Block");
 
+        add(ModBlocks.SAPPHIRE_BUTTON.get(), "Sapphire Button");
+        add(ModBlocks.SAPPHIRE_PRESSURE_PLATE.get(), "Sapphire Pressure Plate");
+        add(ModBlocks.SAPPHIRE_STAIRS.get(), "Sapphire Stairs");
+        add(ModBlocks.SAPPHIRE_SLAB.get(), "Sapphire Slab");
+        add(ModBlocks.SAPPHIRE_WALL.get(), "Sapphire Wall");
+        add(ModBlocks.SAPPHIRE_DOOR.get(), "Sapphire Door");
+        add(ModBlocks.SAPPHIRE_TRAPDOOR.get(), "Sapphire Trapdoor");
+        add(ModBlocks.SAPPHIRE_FENCE.get(), "Sapphire Fence");
+        add(ModBlocks.SAPPHIRE_FENCE_GATE.get(), "Sapphire Fence Gate");
+
         //不能直接以这种方式汉化Tab的名称
         add(ModCreativeModeTabs.BISMUTH_ITEM_TAB.get().getDisplayName().getString(), "Bismuth Items");
         add(ModCreativeModeTabs.BISMUTH_BLOCK_TAB.get().getDisplayName().getString(),"Bismuth Blocks");
