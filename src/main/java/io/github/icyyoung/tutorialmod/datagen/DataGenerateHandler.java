@@ -45,5 +45,9 @@ public class DataGenerateHandler {
                 event.includeServer(),
                 new ModRecipeProvider(output, lookupProvider)
         );
+        generator.addProvider(
+                event.includeServer(),
+                new ModLootTableProvider(output, lookupProvider)
+        );
     }
 }
