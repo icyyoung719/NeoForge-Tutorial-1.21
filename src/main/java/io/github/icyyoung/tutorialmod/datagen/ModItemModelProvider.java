@@ -25,6 +25,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_BISMUTH.get());
         basicItem(ModItems.SAPPHIRE.get());
         basicItem(ModItems.RAW_SAPPHIRE.get());
+        basicItem(ModItems.METAL_DETECTOR.get());
 
         //简单的block在物品栏中的模型
         withExistingParent(ModBlocks.BISMUTH_BLOCK.getRegisteredName(),modLoc("block/bismuth_block"));

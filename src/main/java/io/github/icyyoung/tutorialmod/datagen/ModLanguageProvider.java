@@ -25,6 +25,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.RAW_BISMUTH.get(), "Raw Bismuth");
         add(ModItems.SAPPHIRE.get(), "Sapphire");
         add(ModItems.RAW_SAPPHIRE.get(), "Raw Sapphire");
+        add(ModItems.METAL_DETECTOR.get(), "Metal Detector");
 
         add(ModBlocks.BISMUTH_BLOCK.get(), "Bismuth Block");
         add(ModBlocks.BISMUTH_ORE.get(), "Bismuth Ore");
