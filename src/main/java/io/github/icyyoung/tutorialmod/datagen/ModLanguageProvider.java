@@ -35,6 +35,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), "Deepslate Sapphire Ore");
         add(ModBlocks.NETHER_SAPPHIRE_ORE.get(), "Nether Sapphire Ore");
         add(ModBlocks.END_STONE_SAPPHIRE_ORE.get(), "End Stone Sapphire Ore");
+        add(ModBlocks.SOUND_BLOCK.get(), "Sound Block");
 
         //不能直接以这种方式汉化Tab的名称
         add(ModCreativeModeTabs.BISMUTH_ITEM_TAB.get().getDisplayName().getString(), "Bismuth Items");

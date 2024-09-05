@@ -1,6 +1,7 @@
 package io.github.icyyoung.tutorialmod.block;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
+import io.github.icyyoung.tutorialmod.block.custom.SoundBlock;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -55,6 +56,12 @@ public class ModBlocks {
             () -> new DropExperienceBlock(UniformInt.of(3, 7),
                  BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)
                  .strength(5f).requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> SOUND_BLOCK = registerBlock("sound_block",
+            () -> new SoundBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3f)));
+
+
+
 
 
 

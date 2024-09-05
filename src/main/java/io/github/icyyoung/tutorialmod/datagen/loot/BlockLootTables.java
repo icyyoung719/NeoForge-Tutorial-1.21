@@ -43,6 +43,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.BISMUTH_BLOCK.get());
         dropSelf(ModBlocks.SAPPHIRE_BLOCK.get());
         dropSelf(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
+        dropSelf(ModBlocks.SOUND_BLOCK.get());
 
         add(ModBlocks.BISMUTH_ORE.get(),
                 block -> createCopperLikeOreDrops(ModBlocks.BISMUTH_ORE.get(), ModItems.RAW_BISMUTH.get(),registrylookup));             ;

@@ -39,7 +39,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.NETHER_SAPPHIRE_ORE.get(),
                         ModBlocks.END_STONE_SAPPHIRE_ORE.get(),
                         ModBlocks.BISMUTH_BLOCK.get(),
-                        ModBlocks.BISMUTH_ORE.get()
+                        ModBlocks.BISMUTH_ORE.get(),
+                        ModBlocks.SOUND_BLOCK.get()
                 );
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
