@@ -1,6 +1,7 @@
 package io.github.icyyoung.tutorialmod.item;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
+import io.github.icyyoung.tutorialmod.item.custom.FuelItem;
 import io.github.icyyoung.tutorialmod.item.custom.MetalDetectorItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
@@ -29,6 +30,8 @@ public class ModItems {
 
     public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.register("metal_detector",
             () -> new MetalDetectorItem(new Item.Properties().durability(100)));
+    public static final DeferredItem<Item> PINE_CONE = ITEMS.register("pine_cone",
+            () -> new FuelItem(new Item.Properties(),400));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
