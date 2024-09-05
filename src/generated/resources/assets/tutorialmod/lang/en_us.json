@@ -13,9 +13,11 @@
   "creativetab.tutorialmod.sapphire_items": "Creative Mod Tab",
   "item.tutorialmod.bismuth": "Bismuth",
   "item.tutorialmod.metal_detector": "Metal Detector",
+  "item.tutorialmod.metal_detector.tooltip": "Detects Valuables Underground!",
   "item.tutorialmod.pine_cone": "Pine Cone",
   "item.tutorialmod.raw_bismuth": "Raw Bismuth",
   "item.tutorialmod.raw_sapphire": "Raw Sapphire",
   "item.tutorialmod.sapphire": "Sapphire",
+  "item.tutorialmod.sound_block.tooltip": "Plays sweet sounds when right clicked!",
   "item.tutorialmod.strawberry": "Strawberry"
 }

@@ -44,5 +44,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModCreativeModeTabs.BISMUTH_BLOCK_TAB.get().getDisplayName().getString(),"Bismuth Blocks");
         add(ModCreativeModeTabs.TUTORIAL_TAB.get().getDisplayName().getString(),"Creative Mod Tab");
 //        add(ModCreativeModeTabs.CREATIVE_MOD_TAB.getRegistryName().toLanguageKey(),"Creative Mod Tab");
+        //tooltips
+        add("item.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
+        add("item.tutorialmod.sound_block.tooltip", "Plays sweet sounds when right clicked!");
     }
 }
