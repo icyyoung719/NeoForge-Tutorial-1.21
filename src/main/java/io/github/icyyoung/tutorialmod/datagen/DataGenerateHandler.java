@@ -49,5 +49,15 @@ public class DataGenerateHandler {
                 event.includeServer(),
                 new ModLootTableProvider(output, lookupProvider)
         );
+        generator.addProvider(
+                event.includeServer(),
+                new ModBlockTagGenerator(output, lookupProvider,existingFileHelper)
+        );
+//        ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
+//                new ModBlockTagGenerator(output, lookupProvider, existingFileHelper));
+//        generator.addProvider(
+//                event.includeServer(),
+//                new ModItemTagGenerator(output, lookupProvider,blockTagGenerator.contentsGetter())
+//        );
     }
 }
