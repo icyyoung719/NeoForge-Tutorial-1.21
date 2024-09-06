@@ -55,7 +55,11 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModCreativeModeTabs.TUTORIAL_TAB.get().getDisplayName().getString(),"Creative Mod Tab");
 //        add(ModCreativeModeTabs.CREATIVE_MOD_TAB.getRegistryName().toLanguageKey(),"Creative Mod Tab");
         //tooltips
-        add("item.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
-        add("item.tutorialmod.sound_block.tooltip", "Plays sweet sounds when right clicked!");
+        addSimpleTooltip(ModItems.METAL_DETECTOR.getRegisteredName(), "Detects Valuables Underground!");
+        addSimpleTooltip(ModBlocks.SOUND_BLOCK.getRegisteredName(), "Plays sweet sounds when right clicked!");
+    }
+
+    private void addSimpleTooltip(String registeredName,String translation){
+        add("tooltip.tutorialmod."+registeredName.replaceFirst("tutorialmod:","")+".tooltip",translation);
     }
 }

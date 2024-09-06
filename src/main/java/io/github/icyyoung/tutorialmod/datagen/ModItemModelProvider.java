@@ -35,15 +35,15 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PINE_CONE.get());
 
         //简单的block在物品栏中的模型
-        withExistingParent(ModBlocks.BISMUTH_BLOCK.getRegisteredName(),modLoc("block/bismuth_block"));
-        withExistingParent(ModBlocks.BISMUTH_ORE.getRegisteredName(),modLoc("block/bismuth_ore"));
-        withExistingParent(ModBlocks.SAPPHIRE_BLOCK.getRegisteredName(),modLoc("block/sapphire_block"));
-        withExistingParent(ModBlocks.SAPPHIRE_ORE.getRegisteredName(),modLoc("block/sapphire_ore"));
-        withExistingParent(ModBlocks.RAW_SAPPHIRE_BLOCK.getRegisteredName(),modLoc("block/raw_sapphire_block"));
-        withExistingParent(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.getRegisteredName(),modLoc("block/deepslate_sapphire_ore"));
-        withExistingParent(ModBlocks.NETHER_SAPPHIRE_ORE.getRegisteredName(),modLoc("block/nether_sapphire_ore"));
-        withExistingParent(ModBlocks.END_STONE_SAPPHIRE_ORE.getRegisteredName(),modLoc("block/end_stone_sapphire_ore"));
-        withExistingParent(ModBlocks.SOUND_BLOCK.getRegisteredName(),modLoc("block/sound_block"));
+        evenSimplerBlockItem(ModBlocks.BISMUTH_BLOCK);
+        evenSimplerBlockItem(ModBlocks.BISMUTH_ORE);
+        evenSimplerBlockItem(ModBlocks.SAPPHIRE_BLOCK);
+        evenSimplerBlockItem(ModBlocks.SAPPHIRE_ORE);
+        evenSimplerBlockItem(ModBlocks.RAW_SAPPHIRE_BLOCK);
+        evenSimplerBlockItem(ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
+        evenSimplerBlockItem(ModBlocks.NETHER_SAPPHIRE_ORE);
+        evenSimplerBlockItem(ModBlocks.END_STONE_SAPPHIRE_ORE);
+        evenSimplerBlockItem(ModBlocks.SOUND_BLOCK);
 
         //fence button wall...
 
@@ -92,6 +92,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     //用来协助获取完整方块（相对于fence、button等）的texture地址
     private ResourceLocation blockTexture(DeferredBlock<Block> block) {
-        return ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "block/" + block.getId().getPath());
+        return modLoc("block/" + block.getId().getPath());
     }
 }
