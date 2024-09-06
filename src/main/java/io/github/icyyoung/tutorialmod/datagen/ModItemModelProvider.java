@@ -35,6 +35,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.METAL_DETECTOR.get());
         basicItem(ModItems.STRAWBERRY.get());
         basicItem(ModItems.PINE_CONE.get());
+        //armor items
+        basicItem(ModItems.SAPPHIRE_HELMET.get());
+        basicItem(ModItems.SAPPHIRE_CHESTPLATE.get());
+        basicItem(ModItems.SAPPHIRE_LEGGINGS.get());
+        basicItem(ModItems.SAPPHIRE_BOOTS.get());
 
         //简单的block在物品栏中的模型
         evenSimplerBlockItem(ModBlocks.BISMUTH_BLOCK);

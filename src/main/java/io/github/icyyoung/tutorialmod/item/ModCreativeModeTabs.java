@@ -63,6 +63,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SAPPHIRE_PICKAXE.get());
                         output.accept(ModItems.SAPPHIRE_AXE.get());
                         output.accept(ModItems.SAPPHIRE_HOE.get());
+                        output.accept(ModItems.SAPPHIRE_HELMET.get());
+                        output.accept(ModItems.SAPPHIRE_CHESTPLATE.get());
+                        output.accept(ModItems.SAPPHIRE_LEGGINGS.get());
+                        output.accept(ModItems.SAPPHIRE_BOOTS.get());
+
 
                         output.accept(ModBlocks.SAPPHIRE_BUTTON.get());
                         output.accept(ModBlocks.SAPPHIRE_PRESSURE_PLATE.get());

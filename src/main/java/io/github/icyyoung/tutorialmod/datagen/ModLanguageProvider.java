@@ -35,6 +35,11 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.SAPPHIRE_AXE.get(), "Sapphire Axe");
         add(ModItems.SAPPHIRE_SHOVEL.get(), "Sapphire Shovel");
         add(ModItems.SAPPHIRE_HOE.get(), "Sapphire Hoe");
+        //armor items
+        add(ModItems.SAPPHIRE_HELMET.get(), "Sapphire Helmet");
+        add(ModItems.SAPPHIRE_CHESTPLATE.get(), "Sapphire Chestplate");
+        add(ModItems.SAPPHIRE_LEGGINGS.get(), "Sapphire Leggings");
+        add(ModItems.SAPPHIRE_BOOTS.get(), "Sapphire Boots");
 
         add(ModBlocks.BISMUTH_BLOCK.get(), "Bismuth Block");
         add(ModBlocks.BISMUTH_ORE.get(), "Bismuth Ore");
