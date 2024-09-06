@@ -57,6 +57,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.NETHER_SAPPHIRE_ORE.get());
                         output.accept(ModBlocks.SOUND_BLOCK.get());
                         output.accept(ModItems.PINE_CONE.get());
+                        output.accept(ModItems.SAPPHIRE_STAFF.get());
 
                         output.accept(ModBlocks.SAPPHIRE_BUTTON.get());
                         output.accept(ModBlocks.SAPPHIRE_PRESSURE_PLATE.get());

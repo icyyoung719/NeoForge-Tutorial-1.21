@@ -28,6 +28,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.METAL_DETECTOR.get(), "Metal Detector");
         add(ModItems.STRAWBERRY.get(), "Strawberry");
         add(ModItems.PINE_CONE.get(), "Pine Cone");
+        add(ModItems.SAPPHIRE_STAFF.get(), "Sapphire Staff");
 
         add(ModBlocks.BISMUTH_BLOCK.get(), "Bismuth Block");
         add(ModBlocks.BISMUTH_ORE.get(), "Bismuth Ore");
@@ -55,11 +56,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModCreativeModeTabs.TUTORIAL_TAB.get().getDisplayName().getString(),"Creative Mod Tab");
 //        add(ModCreativeModeTabs.CREATIVE_MOD_TAB.getRegistryName().toLanguageKey(),"Creative Mod Tab");
         //tooltips
-        addSimpleTooltip(ModItems.METAL_DETECTOR.getRegisteredName(), "Detects Valuables Underground!");
-        addSimpleTooltip(ModBlocks.SOUND_BLOCK.getRegisteredName(), "Plays sweet sounds when right clicked!");
-    }
-
-    private void addSimpleTooltip(String registeredName,String translation){
-        add("tooltip.tutorialmod."+registeredName.replaceFirst("tutorialmod:","")+".tooltip",translation);
+        add("tooltip.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
+        add("tooltip.tutorialmod.sound_block.tooltip","Plays sweet sounds when right clicked!");
     }
 }
