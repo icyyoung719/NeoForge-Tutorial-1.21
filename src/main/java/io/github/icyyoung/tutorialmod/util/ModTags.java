@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
     public static class Blocks {
         //不需要在前面添加Tutorialmod:
+        public static final TagKey<Block> INCORRECT_FOR_BLACK_OPAL_TOOL = tag("incorrect_for_black_opal_tool");
         public static final TagKey<Block> METAL_DETECTOR_VALUABLES = tag("metal_detector_valuables");
         public static final TagKey<Block> NEEDS_SAPPHIRE_TOOL = tag("needs_sapphire_tool");
 

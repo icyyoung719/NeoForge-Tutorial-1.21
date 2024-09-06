@@ -1,4 +1,4 @@
-// 1.21	2024-09-06T12:14:02.1388566	Item Models: tutorialmod
+// 1.21	2024-09-06T14:27:44.1912767	Item Models: tutorialmod
 85c4092ee8a88b79898e775ffd1ddd7a535d2b66 assets/tutorialmod/models/item/bismuth.json
 a118ac7349d7896719a282e634bc3604295f34bd assets/tutorialmod/models/item/bismuth_block.json
 169aaa0948365ba21f18244d0d130af75c705dfb assets/tutorialmod/models/item/bismuth_ore.json
@@ -11,15 +11,20 @@ d56de8e6898d1c12a15eca045badafe1947aa387 assets/tutorialmod/models/item/pine_con
 d24305376f58c1ef118279a5c8f5b087a07b1d47 assets/tutorialmod/models/item/raw_sapphire.json
 a7f864f8f8c67b25b34627c0dd8357e96b5d5c79 assets/tutorialmod/models/item/raw_sapphire_block.json
 0a16bffc527696b64e4304b7efccfda93e2b9422 assets/tutorialmod/models/item/sapphire.json
+72e891dd0d4eeff5cd14ecf7f4740f6ba5e7017b assets/tutorialmod/models/item/sapphire_axe.json
 2bf7f614770184be679bb0313dc04832b7fdd577 assets/tutorialmod/models/item/sapphire_block.json
 ee95c0df3b8341e73bc7488bf7b22013e5452930 assets/tutorialmod/models/item/sapphire_button.json
 5fb321ce210e610f7aa0b54b94dd60600b4799eb assets/tutorialmod/models/item/sapphire_door.json
 8f9a97fbc1219f33829e6052616569467b572412 assets/tutorialmod/models/item/sapphire_fence.json
 2e3c5e7d4fb6b7c1119a061cffcf78342a084c25 assets/tutorialmod/models/item/sapphire_fence_gate.json
+31ed8124b1858f3f8fee298ec2b24c988c55764f assets/tutorialmod/models/item/sapphire_hoe.json
 9607e08401cad098096f2d09cf41f23d6af6217a assets/tutorialmod/models/item/sapphire_ore.json
+87907e52aad4eae7978977f725c99c834c2bdb23 assets/tutorialmod/models/item/sapphire_pickaxe.json
 8adde596706bbd0111ed7a881fbf16718ca981ec assets/tutorialmod/models/item/sapphire_pressure_plate.json
+e01fd164f2417618581deb8e7b3f8af8a746c6a7 assets/tutorialmod/models/item/sapphire_shovel.json
 0248b67e69dc9ca7628b13de19dc4e8b21e625a7 assets/tutorialmod/models/item/sapphire_slab.json
 e9aa9e3feee2e040f2908d291e5fa066bb7904c6 assets/tutorialmod/models/item/sapphire_stairs.json
+4f6d3c707862a82ba5a69cce5a7e69fe47667937 assets/tutorialmod/models/item/sapphire_sword.json
 57b0c78a4d68b08f0db44e21a63411abf9c21b70 assets/tutorialmod/models/item/sapphire_trapdoor.json
 8822d7daa71ae6a7f4091c85362a2480e52d0c06 assets/tutorialmod/models/item/sapphire_wall.json
 e1bcffd5dcbfb758a3668455d04d23c6efda02cf assets/tutorialmod/models/item/sound_block.json

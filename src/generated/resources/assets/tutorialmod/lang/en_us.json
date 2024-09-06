@@ -26,6 +26,12 @@
   "item.tutorialmod.raw_bismuth": "Raw Bismuth",
   "item.tutorialmod.raw_sapphire": "Raw Sapphire",
   "item.tutorialmod.sapphire": "Sapphire",
+  "item.tutorialmod.sapphire_axe": "Sapphire Axe",
+  "item.tutorialmod.sapphire_hoe": "Sapphire Hoe",
+  "item.tutorialmod.sapphire_pickaxe": "Sapphire Pickaxe",
+  "item.tutorialmod.sapphire_shovel": "Sapphire Shovel",
+  "item.tutorialmod.sapphire_staff": "Sapphire Staff",
+  "item.tutorialmod.sapphire_sword": "Sapphire Sword",
   "item.tutorialmod.strawberry": "Strawberry",
   "tooltip.tutorialmod.metal_detector.tooltip": "Detects Valuables Underground!",
   "tooltip.tutorialmod.sound_block.tooltip": "Plays sweet sounds when right clicked!"

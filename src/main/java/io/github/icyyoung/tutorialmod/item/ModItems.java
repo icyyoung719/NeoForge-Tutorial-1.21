@@ -3,7 +3,7 @@ package io.github.icyyoung.tutorialmod.item;
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.item.custom.FuelItem;
 import io.github.icyyoung.tutorialmod.item.custom.MetalDetectorItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -16,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TutorialMod.MOD_ID);
-
+    //simple items
     public static final DeferredItem<Item> BISMUTH = ITEMS.register("bismuth",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> RAW_BISMUTH = ITEMS.register("raw_bismuth",
@@ -29,11 +29,30 @@ public class ModItems {
             () -> new Item(new Item.Properties().food(ModFoods.STRAWBERRY)));
     public static final DeferredItem<Item> SAPPHIRE_STAFF = ITEMS.register("sapphire_staff",
             () -> new Item(new Item.Properties().stacksTo(1)));
+    //simple tools
+    public static final DeferredItem<Item> SAPPHIRE_SWORD = ITEMS.register("sapphire_sword",
+                () -> new SwordItem(ModToolTiers.SAPPHIRE,
+                        new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.SAPPHIRE,3,-2.4f))));
+    public static final DeferredItem<Item> SAPPHIRE_PICKAXE = ITEMS.register("sapphire_pickaxe",
+                () -> new PickaxeItem(ModToolTiers.SAPPHIRE,
+                        new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.SAPPHIRE,1,-2.8f))));
+    public static final DeferredItem<Item> SAPPHIRE_AXE = ITEMS.register("sapphire_axe",
+                () -> new AxeItem(ModToolTiers.SAPPHIRE,
+                        new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.SAPPHIRE,6,-3.2f))));
+    public static final DeferredItem<Item> SAPPHIRE_SHOVEL = ITEMS.register("sapphire_shovel",
+                () -> new ShovelItem(ModToolTiers.SAPPHIRE,
+                        new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.SAPPHIRE,1.5f,-3.0f))));
+    public static final DeferredItem<Item> SAPPHIRE_HOE = ITEMS.register("sapphire_hoe",
+                () -> new HoeItem(ModToolTiers.SAPPHIRE,
+                    new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.SAPPHIRE,0,-3.0f))));
 
+
+    //custom items
     public static final DeferredItem<Item> METAL_DETECTOR = ITEMS.register("metal_detector",
             () -> new MetalDetectorItem(new Item.Properties().durability(100)));
     public static final DeferredItem<Item> PINE_CONE = ITEMS.register("pine_cone",
             () -> new FuelItem(new Item.Properties(),400));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -6,11 +6,13 @@ import io.github.icyyoung.tutorialmod.item.ModItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 /**
  * @Description 自动生成item的贴图json
@@ -46,7 +48,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.SOUND_BLOCK);
 
         //fence button wall...
-
         simpleFenceItem(ModBlocks.SAPPHIRE_FENCE, ModBlocks.SAPPHIRE_BLOCK);
         simpleButtonItem(ModBlocks.SAPPHIRE_BUTTON, ModBlocks.SAPPHIRE_BLOCK);
         simpleWallItem(ModBlocks.SAPPHIRE_WALL, ModBlocks.SAPPHIRE_BLOCK);
@@ -58,6 +59,20 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         simpleTrapdoorItem(ModBlocks.SAPPHIRE_TRAPDOOR);
         simpleBlockItem(ModBlocks.SAPPHIRE_DOOR);
+        //tool items
+        handheldItem(ModItems.SAPPHIRE_SWORD);
+        handheldItem(ModItems.SAPPHIRE_PICKAXE);
+        handheldItem(ModItems.SAPPHIRE_AXE);
+        handheldItem(ModItems.SAPPHIRE_SHOVEL);
+        handheldItem(ModItems.SAPPHIRE_HOE);
+    }
+
+
+
+    private void handheldItem(DeferredItem<Item> item) {
+        withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/handheld")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "item/" + item.getId().getPath()));
     }
 
     public void evenSimplerBlockItem(DeferredBlock<Block> block) {
