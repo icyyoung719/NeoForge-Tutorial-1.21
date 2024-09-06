@@ -3,6 +3,7 @@ package io.github.icyyoung.tutorialmod.item;
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.item.custom.FuelItem;
 import io.github.icyyoung.tutorialmod.item.custom.MetalDetectorItem;
+import io.github.icyyoung.tutorialmod.item.custom.ModArmorItem;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -47,16 +48,16 @@ public class ModItems {
                     new Item.Properties().attributes(SwordItem.createAttributes(ModToolTiers.SAPPHIRE,0,-3.0f))));
     //simple armor
     public static final DeferredItem<Item> SAPPHIRE_HELMET = ITEMS.register("sapphire_helmet",
-                () -> new ArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.HELMET,
+                () -> new ModArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.HELMET,
                         new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(16))));
     public static final DeferredItem<Item> SAPPHIRE_CHESTPLATE = ITEMS.register("sapphire_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.CHESTPLATE,
+            () -> new ModArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.CHESTPLATE,
                     new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(16))));
     public static final DeferredItem<Item> SAPPHIRE_LEGGINGS = ITEMS.register("sapphire_leggings",
-            () -> new ArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.LEGGINGS,
+            () -> new ModArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.LEGGINGS,
                     new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(16))));
     public static final DeferredItem<Item> SAPPHIRE_BOOTS = ITEMS.register("sapphire_boots",
-            () -> new ArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.BOOTS,
+            () -> new ModArmorItem(ModArmorMaterials.SAPPHIRE, ArmorItem.Type.BOOTS,
                 new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(16))));
 
 
