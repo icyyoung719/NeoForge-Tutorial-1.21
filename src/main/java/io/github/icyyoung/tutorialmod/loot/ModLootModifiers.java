@@ -10,7 +10,7 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import java.util.function.Supplier;
 
 /**
- * @Description TODO
+ * @Description 不同的loot类别的定义
  * @Author icyyoung
  * @Date 2024/9/6
  */

@@ -17,7 +17,7 @@ import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * @Description TODO
+ * @Description 不同loot类别的实例
  * @Author icyyoung
  * @Date 2024/9/7
  */

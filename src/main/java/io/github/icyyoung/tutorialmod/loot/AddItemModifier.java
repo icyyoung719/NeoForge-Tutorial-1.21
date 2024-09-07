@@ -13,7 +13,7 @@ import net.neoforged.neoforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @Description TODO
+ * @Description Loot的底层实现
  * @Author icyyoung
  * @Date 2024/9/6
  */
@@ -21,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
 public class AddItemModifier extends LootModifier {
     public static final MapCodec<AddItemModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             LootModifier.codecStart(inst).and(inst.group(
-            BuiltInRegistries.ITEM.byNameCodec().fieldOf("field3").forGetter(e -> e.field3),
-            BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(m -> m.item))
+            BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(m -> m.item),
+            BuiltInRegistries.ITEM.byNameCodec().fieldOf("field3").forGetter(e -> e.field3))
     ).apply(inst, AddItemModifier::new));
     private final Item item;
     private final Item field3;
