@@ -5,6 +5,7 @@ import io.github.icyyoung.tutorialmod.block.ModBlocks;
 import io.github.icyyoung.tutorialmod.item.ModArmorMaterials;
 import io.github.icyyoung.tutorialmod.item.ModCreativeModeTabs;
 import io.github.icyyoung.tutorialmod.item.ModItems;
+import io.github.icyyoung.tutorialmod.loot.ModLootModifiers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -44,6 +45,7 @@ public class TutorialMod
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModArmorMaterials.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

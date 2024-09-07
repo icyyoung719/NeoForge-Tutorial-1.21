@@ -7,6 +7,8 @@ import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.function.Supplier;
+
 /**
  * @Description TODO
  * @Author icyyoung
@@ -17,8 +19,8 @@ public class ModLootModifiers {
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOT_MODIFIER_SERIALIZERS =
             DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, TutorialMod.MOD_ID);
 
-//    public static final Supplier<MapCodec<MyLootModifier>> MY_LOOT_MODIFIER =
-//            GLOBAL_LOOT_MODIFIER_SERIALIZERS.register("my_loot_modifier", () -> MyLootModifier.CODEC);
+    public static final Supplier<MapCodec<AddItemModifier>> ADD_ITEM =
+            LOOT_MODIFIER_SERIALIZERS.register("add_item", () -> AddItemModifier.CODEC);
 
     public static void register(IEventBus eventBus) {
         LOOT_MODIFIER_SERIALIZERS.register(eventBus);
