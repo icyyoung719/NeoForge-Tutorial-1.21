@@ -18,16 +18,16 @@ import org.jetbrains.annotations.NotNull;
  * @Date 2024/9/6
  */
 
-public class AddItemModifier extends LootModifier {
-    public static final MapCodec<AddItemModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
+public class AddSusSandModifier extends LootModifier {
+    public static final MapCodec<AddSusSandModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             LootModifier.codecStart(inst).and(inst.group(
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(m -> m.item),
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("field3").forGetter(e -> e.field3))
-    ).apply(inst, AddItemModifier::new));
+    ).apply(inst, AddSusSandModifier::new));
     private final Item item;
     private final Item field3;
 
-    public AddItemModifier(LootItemCondition[] conditionsIn, Item item, Item field3) {
+    public AddSusSandModifier(LootItemCondition[] conditionsIn, Item item, Item field3) {
         super(conditionsIn);
         this.item = item;
         this.field3 = field3;
@@ -42,7 +42,11 @@ public class AddItemModifier extends LootModifier {
             }
         }
 
-        generatedLoot.add(new ItemStack(this.item));
+        if(context.getRandom().nextFloat()<0.5){
+            //50%的概率
+            generatedLoot.clear();
+            generatedLoot.add(new ItemStack(item, 1));
+        }
 
         return generatedLoot;
     }

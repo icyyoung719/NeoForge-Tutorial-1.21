@@ -21,6 +21,8 @@ public class ModLootModifiers {
 
     public static final Supplier<MapCodec<AddItemModifier>> ADD_ITEM =
             LOOT_MODIFIER_SERIALIZERS.register("add_item", () -> AddItemModifier.CODEC);
+    public static final Supplier<MapCodec<AddSusSandModifier>> ADD_SUS_SAND_ITEM =
+            LOOT_MODIFIER_SERIALIZERS.register("add_sus_sand_item", () -> AddSusSandModifier.CODEC);
 
     public static void register(IEventBus eventBus) {
         LOOT_MODIFIER_SERIALIZERS.register(eventBus);

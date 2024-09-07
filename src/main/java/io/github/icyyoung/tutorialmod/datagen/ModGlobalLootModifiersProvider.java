@@ -3,6 +3,7 @@ package io.github.icyyoung.tutorialmod.datagen;
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.loot.AddItemModifier;
+import io.github.icyyoung.tutorialmod.loot.AddSusSandModifier;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -38,6 +39,11 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
 
         add("metal_detector_from_jungle_temples", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("chests/jungle_temple")).build() }, ModItems.METAL_DETECTOR.get(),Items.APPLE));
+
+        add("metal_detector_from_suspicious_sand", new AddSusSandModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(ResourceLocation.withDefaultNamespace("archaeology/desert_pyramid")).build() }, ModItems.METAL_DETECTOR.get(),Items.APPLE));
+
+
 
 
     }
