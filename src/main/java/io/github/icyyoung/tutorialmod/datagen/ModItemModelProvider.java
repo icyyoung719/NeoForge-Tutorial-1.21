@@ -35,6 +35,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.METAL_DETECTOR.get());
         basicItem(ModItems.STRAWBERRY.get());
         basicItem(ModItems.PINE_CONE.get());
+            //crop seeds
+        basicItem(ModItems.STRAWBERRY_SEEDS.get());
         //armor items
         basicItem(ModItems.SAPPHIRE_HELMET.get());
         basicItem(ModItems.SAPPHIRE_CHESTPLATE.get());
@@ -70,6 +72,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.SAPPHIRE_AXE);
         handheldItem(ModItems.SAPPHIRE_SHOVEL);
         handheldItem(ModItems.SAPPHIRE_HOE);
+
     }
 
 

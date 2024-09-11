@@ -1,4 +1,4 @@
-// 1.21	2024-09-06T15:55:06.1311211	Item Models: tutorialmod
+// 1.21	2024-09-11T14:28:01.1464879	Item Models: tutorialmod
 85c4092ee8a88b79898e775ffd1ddd7a535d2b66 assets/tutorialmod/models/item/bismuth.json
 a118ac7349d7896719a282e634bc3604295f34bd assets/tutorialmod/models/item/bismuth_block.json
 169aaa0948365ba21f18244d0d130af75c705dfb assets/tutorialmod/models/item/bismuth_ore.json
@@ -33,3 +33,4 @@ e9aa9e3feee2e040f2908d291e5fa066bb7904c6 assets/tutorialmod/models/item/sapphire
 8822d7daa71ae6a7f4091c85362a2480e52d0c06 assets/tutorialmod/models/item/sapphire_wall.json
 e1bcffd5dcbfb758a3668455d04d23c6efda02cf assets/tutorialmod/models/item/sound_block.json
 0f4c6f5df2121954f3a0de1eb8e66d8c587fed43 assets/tutorialmod/models/item/strawberry.json
+85dffe5c3e34ee76908efb087a4ed2c43e945942 assets/tutorialmod/models/item/strawberry_seeds.json

@@ -3,10 +3,15 @@ package io.github.icyyoung.tutorialmod.datagen;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.block.ModBlocks;
+import io.github.icyyoung.tutorialmod.block.custom.StrawberryCropBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.function.Function;
 
 /**
  * @Description 自动生成方块（放下后）的实际贴图，包括状态、方向等信息
@@ -42,7 +47,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         doorBlock(((DoorBlock) ModBlocks.SAPPHIRE_DOOR.get()),modLoc("block/sapphire_door_top"), modLoc("block/sapphire_door_bottom"));
         trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.SAPPHIRE_TRAPDOOR.get()), modLoc("block/sapphire_trapdoor"), true, "cutout");
-    }
 
+        //crops
+        makeStrawberryCrop((CropBlock) ModBlocks.STRAWBERRY_CROP.get(), "strawberry_stage", "strawberry_stage");
+
+    }
+    public void makeStrawberryCrop(CropBlock cropBlock, String modelName, String textureName) {
+        Function<BlockState,ConfiguredModel[]> function = state -> strawberryStates(state, cropBlock, modelName, textureName);
+
+        getVariantBuilder(cropBlock).forAllStates(function);
+    }
+    private ConfiguredModel[] strawberryStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((StrawberryCropBlock) block).getAgeProperty()),
+                modLoc("block/" + textureName + state.getValue(((StrawberryCropBlock) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
+    }
 
 }

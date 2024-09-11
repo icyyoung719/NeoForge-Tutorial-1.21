@@ -31,7 +31,7 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
     @Override
     protected void start() {
         add("pine_cone_from_grass", new AddItemModifier(new LootItemCondition[] {
-                LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.GRASS_BLOCK).build(),
+                LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.STONE).build(),
                 LootItemRandomChanceCondition.randomChance(0.35f).build()}, ModItems.PINE_CONE.get(), Items.APPLE));
 
         add("pine_cone_from_creeper", new AddItemModifier(new LootItemCondition[] {

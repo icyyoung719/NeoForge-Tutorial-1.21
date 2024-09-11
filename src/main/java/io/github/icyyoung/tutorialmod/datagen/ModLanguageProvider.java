@@ -21,6 +21,7 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        //items
         add(ModItems.BISMUTH.get(), "Bismuth");
         add(ModItems.RAW_BISMUTH.get(), "Raw Bismuth");
         add(ModItems.SAPPHIRE.get(), "Sapphire");
@@ -29,6 +30,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.STRAWBERRY.get(), "Strawberry");
         add(ModItems.PINE_CONE.get(), "Pine Cone");
         add(ModItems.SAPPHIRE_STAFF.get(), "Sapphire Staff");
+        add(ModItems.STRAWBERRY_SEEDS.get(), "Strawberry Seeds");
         //tool items
         add(ModItems.SAPPHIRE_SWORD.get(), "Sapphire Sword");
         add(ModItems.SAPPHIRE_PICKAXE.get(), "Sapphire Pickaxe");
