@@ -3,6 +3,7 @@ package io.github.icyyoung.tutorialmod.datagen;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.block.ModBlocks;
+import io.github.icyyoung.tutorialmod.block.custom.CornCropBlock;
 import io.github.icyyoung.tutorialmod.block.custom.StrawberryCropBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.*;
@@ -50,7 +51,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         //crops
         makeStrawberryCrop((CropBlock) ModBlocks.STRAWBERRY_CROP.get(), "strawberry_stage", "strawberry_stage");
-
+        makeCornCrop(((CropBlock) ModBlocks.CORN_CROP.get()),"corn_stage_","corn_stage_");
     }
     public void makeStrawberryCrop(CropBlock cropBlock, String modelName, String textureName) {
         Function<BlockState,ConfiguredModel[]> function = state -> strawberryStates(state, cropBlock, modelName, textureName);
@@ -64,5 +65,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         return models;
     }
+    public void makeCornCrop(CropBlock cropBlock, String modelName, String textureName) {
+        Function<BlockState,ConfiguredModel[]> function = state -> cornStates(state, cropBlock, modelName, textureName);
 
+        getVariantBuilder(cropBlock).forAllStates(function);
+    }
+    private ConfiguredModel[] cornStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        ConfiguredModel[] models = new ConfiguredModel[1];
+        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((CornCropBlock) block).getAgeProperty()),
+                modLoc("block/" + textureName + state.getValue(((CornCropBlock) block).getAgeProperty()))).renderType("cutout"));
+
+        return models;
+    }
 }

@@ -1,6 +1,7 @@
 package io.github.icyyoung.tutorialmod.block;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
+import io.github.icyyoung.tutorialmod.block.custom.CornCropBlock;
 import io.github.icyyoung.tutorialmod.block.custom.SoundBlock;
 import io.github.icyyoung.tutorialmod.block.custom.StrawberryCropBlock;
 import io.github.icyyoung.tutorialmod.item.ModItems;
@@ -88,7 +89,8 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> STRAWBERRY_CROP = BLOCKS.register("strawberry_crop",
             () -> new StrawberryCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noOcclusion().noCollission()));
-
+    public static final DeferredBlock<Block> CORN_CROP = BLOCKS.register("corn_crop",
+            () -> new CornCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noOcclusion().noCollission()));
 
 
 

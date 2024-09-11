@@ -1,7 +1,9 @@
-// 1.21	2024-09-11T14:28:01.1464879	Item Models: tutorialmod
+// 1.21	2024-09-11T15:29:13.4511279	Item Models: tutorialmod
 85c4092ee8a88b79898e775ffd1ddd7a535d2b66 assets/tutorialmod/models/item/bismuth.json
 a118ac7349d7896719a282e634bc3604295f34bd assets/tutorialmod/models/item/bismuth_block.json
 169aaa0948365ba21f18244d0d130af75c705dfb assets/tutorialmod/models/item/bismuth_ore.json
+6126e26da373f9113d9e9be875b14a0d13857444 assets/tutorialmod/models/item/corn.json
+4c5c277fa6360b149d6c3ab20584fcc4450cda27 assets/tutorialmod/models/item/corn_seeds.json
 251495c94fbf35dd43cd773e6cf31533a8b72f09 assets/tutorialmod/models/item/deepslate_sapphire_ore.json
 bf5cdde3dfa3effdde9c4358ecb01c39922d7945 assets/tutorialmod/models/item/end_stone_sapphire_ore.json
 93719e53df04c62d91023fe733206eb93b7aac86 assets/tutorialmod/models/item/metal_detector.json

@@ -28,9 +28,12 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.RAW_SAPPHIRE.get(), "Raw Sapphire");
         add(ModItems.METAL_DETECTOR.get(), "Metal Detector");
         add(ModItems.STRAWBERRY.get(), "Strawberry");
+        add(ModItems.CORN.get(), "Corn");
         add(ModItems.PINE_CONE.get(), "Pine Cone");
         add(ModItems.SAPPHIRE_STAFF.get(), "Sapphire Staff");
         add(ModItems.STRAWBERRY_SEEDS.get(), "Strawberry Seeds");
+        add(ModItems.CORN_SEEDS.get(), "Corn Seeds");
+
         //tool items
         add(ModItems.SAPPHIRE_SWORD.get(), "Sapphire Sword");
         add(ModItems.SAPPHIRE_PICKAXE.get(), "Sapphire Pickaxe");

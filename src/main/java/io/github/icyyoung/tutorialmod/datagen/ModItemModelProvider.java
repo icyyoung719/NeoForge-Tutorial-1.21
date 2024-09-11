@@ -34,9 +34,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_SAPPHIRE.get());
         basicItem(ModItems.METAL_DETECTOR.get());
         basicItem(ModItems.STRAWBERRY.get());
+        basicItem(ModItems.CORN.get());
         basicItem(ModItems.PINE_CONE.get());
             //crop seeds
         basicItem(ModItems.STRAWBERRY_SEEDS.get());
+        basicItem(ModItems.CORN_SEEDS.get());
         //armor items
         basicItem(ModItems.SAPPHIRE_HELMET.get());
         basicItem(ModItems.SAPPHIRE_CHESTPLATE.get());
