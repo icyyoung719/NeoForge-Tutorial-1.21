@@ -1,9 +1,11 @@
 {
   "block.tutorialmod.bismuth_block": "Bismuth Block",
   "block.tutorialmod.bismuth_ore": "Bismuth Ore",
+  "block.tutorialmod.catmint": "Catmint",
   "block.tutorialmod.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
   "block.tutorialmod.end_stone_sapphire_ore": "End Stone Sapphire Ore",
   "block.tutorialmod.nether_sapphire_ore": "Nether Sapphire Ore",
+  "block.tutorialmod.potted_catmint": "Potted Catmint",
   "block.tutorialmod.raw_sapphire_block": "Raw Sapphire Block",
   "block.tutorialmod.sapphire_block": "Sapphire Block",
   "block.tutorialmod.sapphire_button": "Sapphire Button",

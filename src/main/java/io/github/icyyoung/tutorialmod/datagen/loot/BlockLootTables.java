@@ -58,6 +58,9 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.SAPPHIRE_BUTTON.get());
         dropSelf(ModBlocks.SAPPHIRE_STAIRS.get());
 
+        dropSelf(ModBlocks.CATMINT.get());
+        add(ModBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(ModBlocks.POTTED_CATMINT.get()));
+
         add(ModBlocks.SAPPHIRE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.SAPPHIRE_SLAB.get()));
         add(ModBlocks.SAPPHIRE_DOOR.get(),

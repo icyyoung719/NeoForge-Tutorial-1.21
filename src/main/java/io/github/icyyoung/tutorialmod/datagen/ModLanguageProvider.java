@@ -65,6 +65,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.SAPPHIRE_TRAPDOOR.get(), "Sapphire Trapdoor");
         add(ModBlocks.SAPPHIRE_FENCE.get(), "Sapphire Fence");
         add(ModBlocks.SAPPHIRE_FENCE_GATE.get(), "Sapphire Fence Gate");
+        add(ModBlocks.CATMINT.get(), "Catmint");
+        add(ModBlocks.POTTED_CATMINT.get(), "Potted Catmint");
+
 
         //不能直接以这种方式汉化Tab的名称
         add(ModCreativeModeTabs.BISMUTH_ITEM_TAB.get().getDisplayName().getString(), "Bismuth Items");

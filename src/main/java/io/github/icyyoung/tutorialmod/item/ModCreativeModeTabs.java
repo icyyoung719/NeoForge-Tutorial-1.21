@@ -72,7 +72,6 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CORN.get());
 
 
-
                         output.accept(ModBlocks.SAPPHIRE_BUTTON.get());
                         output.accept(ModBlocks.SAPPHIRE_PRESSURE_PLATE.get());
                         output.accept(ModBlocks.SAPPHIRE_STAIRS.get());
@@ -82,6 +81,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.SAPPHIRE_FENCE_GATE.get());
                         output.accept(ModBlocks.SAPPHIRE_TRAPDOOR.get());
                         output.accept(ModBlocks.SAPPHIRE_DOOR.get());
+                        output.accept(ModBlocks.CATMINT);
+                        output.accept(ModBlocks.POTTED_CATMINT);
                     }).build());
 
     public static void register(IEventBus eventBus){

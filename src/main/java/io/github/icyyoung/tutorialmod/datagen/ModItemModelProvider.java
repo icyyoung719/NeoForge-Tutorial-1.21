@@ -74,7 +74,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.SAPPHIRE_AXE);
         handheldItem(ModItems.SAPPHIRE_SHOVEL);
         handheldItem(ModItems.SAPPHIRE_HOE);
-
+        //flower items
+        simpleBlockItemBlockTexture(ModBlocks.CATMINT);
     }
 
 
@@ -93,6 +94,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 mcLoc("item/generated")).texture("layer0",
                 modLoc("item/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder simpleBlockItemBlockTexture(DeferredBlock<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                mcLoc("item/generated")).texture("layer0",
+                modLoc("block/" + item.getId().getPath()));
     }
     public void simpleTrapdoorItem(DeferredBlock<Block> block) {
         this.withExistingParent(block.getRegisteredName(),
