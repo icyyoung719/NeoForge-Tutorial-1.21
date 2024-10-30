@@ -81,8 +81,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.SAPPHIRE_FENCE_GATE.get());
                         output.accept(ModBlocks.SAPPHIRE_TRAPDOOR.get());
                         output.accept(ModBlocks.SAPPHIRE_DOOR.get());
-                        output.accept(ModBlocks.CATMINT);
-                        output.accept(ModBlocks.POTTED_CATMINT);
+                        output.accept(ModBlocks.CATMINT.get());
                     }).build());
 
     public static void register(IEventBus eventBus){
