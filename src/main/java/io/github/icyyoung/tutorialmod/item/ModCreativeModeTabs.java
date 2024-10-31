@@ -13,7 +13,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 /**
- * @Description TODO
+ * @Description This will only actually register when opening inventory
  * @Author icyyoung
  * @Date 2024/9/4
  */
@@ -48,6 +48,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SAPPHIRE.get());
                         output.accept(ModItems.RAW_SAPPHIRE.get());
                         output.accept(ModItems.METAL_DETECTOR.get());
+                        output.accept(ModItems.CHISEL.get());
                         output.accept(ModItems.STRAWBERRY.get());
                         output.accept(ModBlocks.SAPPHIRE_BLOCK.get());
                         output.accept(ModBlocks.SAPPHIRE_ORE.get());

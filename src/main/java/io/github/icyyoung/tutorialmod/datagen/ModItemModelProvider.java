@@ -33,6 +33,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SAPPHIRE.get());
         basicItem(ModItems.RAW_SAPPHIRE.get());
         basicItem(ModItems.METAL_DETECTOR.get());
+        basicItem(ModItems.CHISEL.get());
         basicItem(ModItems.STRAWBERRY.get());
         basicItem(ModItems.CORN.get());
         basicItem(ModItems.PINE_CONE.get());

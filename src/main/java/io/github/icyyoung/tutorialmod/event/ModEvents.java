@@ -45,8 +45,11 @@ public class ModEvents {
                     2, 12, 0.075f));
         }
 //        if(event.getType() == VillagerProfession.LIBRARIAN) {
+//            Holder<Enchantment> enchantmentHolder =
+//            //Registry<Enchantment> registry = level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
 //            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-//            ItemStack enchantedBook = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(Enchantment, 2));
+//            EnchantedBookItem.createForEnchantment(new EnchantmentInstance(, 1));
+//            ItemStack enchantedBook = EnchantedBookItem.createForEnchantment(new EnchantmentInstance(AllE, 2));
 //            // Level 1
 //            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
 //                    new ItemCost(Items.EMERALD, 32),
