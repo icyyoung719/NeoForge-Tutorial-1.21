@@ -5,6 +5,7 @@ import io.github.icyyoung.tutorialmod.block.custom.CornCropBlock;
 import io.github.icyyoung.tutorialmod.block.custom.SoundBlock;
 import io.github.icyyoung.tutorialmod.block.custom.StrawberryCropBlock;
 import io.github.icyyoung.tutorialmod.item.ModItems;
+import io.github.icyyoung.tutorialmod.sound.ModSounds;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
@@ -60,7 +61,7 @@ public class ModBlocks {
                  .strength(5f).requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> SOUND_BLOCK = registerBlock("sound_block",
-            () -> new SoundBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3f)));
+            () -> new SoundBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3f).sound(ModSounds.SOUND_BLOCK_SOUNDS)));
 
 
     public static final DeferredBlock<Block> SAPPHIRE_STAIRS = registerBlock("sapphire_stairs",
