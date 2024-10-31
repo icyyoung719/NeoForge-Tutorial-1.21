@@ -34,6 +34,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.SAPPHIRE_STAFF.get(), "Sapphire Staff");
         add(ModItems.STRAWBERRY_SEEDS.get(), "Strawberry Seeds");
         add(ModItems.CORN_SEEDS.get(), "Corn Seeds");
+        //sound disks
+        add(ModItems.BAR_BRAWL_MUSIC_DISC.get(), "Bar Brawl Music Disk");
+        add("item.tutorialmod.bar_brawl_music_disc.desc","Bryan Tech - Bar Brawl (CC0)");
 
         //tool items
         add(ModItems.SAPPHIRE_SWORD.get(), "Sapphire Sword");

@@ -6,6 +6,7 @@ import io.github.icyyoung.tutorialmod.item.custom.ChiselItem;
 import io.github.icyyoung.tutorialmod.item.custom.FuelItem;
 import io.github.icyyoung.tutorialmod.item.custom.MetalDetectorItem;
 import io.github.icyyoung.tutorialmod.item.custom.ModArmorItem;
+import io.github.icyyoung.tutorialmod.sound.ModSounds;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -80,6 +81,10 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));
     public static final DeferredItem<Item> CORN_SEEDS = ITEMS.register("corn_seeds",
             () -> new ItemNameBlockItem(ModBlocks.CORN_CROP.get(), new Item.Properties()));
+
+    //sound disks
+    public static final DeferredItem<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.register("bar_brawl_music_disc",
+            () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.BAR_BRAWL_KEY).stacksTo(1)));
 
 
     public static void register(IEventBus eventBus){

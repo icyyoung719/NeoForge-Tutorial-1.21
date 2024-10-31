@@ -37,7 +37,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STRAWBERRY.get());
         basicItem(ModItems.CORN.get());
         basicItem(ModItems.PINE_CONE.get());
-            //crop seeds
+        //sound disks
+        basicItem(ModItems.BAR_BRAWL_MUSIC_DISC.get());
+        //crop seeds
         basicItem(ModItems.STRAWBERRY_SEEDS.get());
         basicItem(ModItems.CORN_SEEDS.get());
         //armor items
