@@ -2,6 +2,7 @@ package io.github.icyyoung.tutorialmod;
 
 import com.mojang.logging.LogUtils;
 import io.github.icyyoung.tutorialmod.block.ModBlocks;
+import io.github.icyyoung.tutorialmod.effect.ModEffects;
 import io.github.icyyoung.tutorialmod.item.ModArmorMaterials;
 import io.github.icyyoung.tutorialmod.item.ModCreativeModeTabs;
 import io.github.icyyoung.tutorialmod.item.ModItems;
@@ -52,6 +53,7 @@ public class TutorialMod
         ModArmorMaterials.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModPotions.register(modEventBus);
+        ModEffects.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

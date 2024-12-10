@@ -38,7 +38,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.BAR_BRAWL_MUSIC_DISC.get(), "Bar Brawl Music Disk");
         add("item.tutorialmod.bar_brawl_music_disc.desc","Bryan Tech - Bar Brawl (CC0)");
 
-        //potion items
+        //potion and effect items
+        add("effect.minecraft.slimey", "Slimey");
+
         add("item.minecraft.potion.effect.slimey_potion","Slimey Potion");
         add("item.minecraft.splash_potion.effect.slimey_potion","Slimey Splash Potion");
         add("item.minecraft.lingering_potion.effect.slimey_potion","Slimey Lingering Potion");
