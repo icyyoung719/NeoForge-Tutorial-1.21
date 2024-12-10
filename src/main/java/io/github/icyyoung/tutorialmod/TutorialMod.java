@@ -6,6 +6,7 @@ import io.github.icyyoung.tutorialmod.item.ModArmorMaterials;
 import io.github.icyyoung.tutorialmod.item.ModCreativeModeTabs;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.loot.ModLootModifiers;
+import io.github.icyyoung.tutorialmod.potion.ModPotions;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -50,6 +51,7 @@ public class TutorialMod
         ModSounds.register(modEventBus);
         ModArmorMaterials.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModPotions.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
