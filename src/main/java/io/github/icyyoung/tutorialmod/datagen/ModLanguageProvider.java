@@ -88,5 +88,23 @@ public class ModLanguageProvider extends LanguageProvider {
         //tooltips
         add("tooltip.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
         add("tooltip.tutorialmod.sound_block.tooltip","Plays sweet sounds when right clicked!");
+        //paintings
+        add(getPaintingTitleKey("world"), "World");
+        add(getPaintingAuthorKey("world"), "NanoAttack");
+        add(getPaintingTitleKey("shrimp"), "Shrimp");
+        add(getPaintingAuthorKey("shrimp"), "NanoAttack");
+        add(getPaintingTitleKey("saw_them"), "Saw Them");
+        add(getPaintingAuthorKey("saw_them"), "NanoAttack");
+    }
+
+
+
+
+    // used for paintings to translate
+    private static String getPaintingTitleKey(String name) {
+        return "painting." + TutorialMod.MOD_ID + "." + name.toLowerCase() +".title";
+    }
+    private static String getPaintingAuthorKey(String name) {
+        return "painting." + TutorialMod.MOD_ID + "." + name.toLowerCase() +".author";
     }
 }

@@ -49,6 +49,12 @@
   "item.tutorialmod.sapphire_sword": "Sapphire Sword",
   "item.tutorialmod.strawberry": "Strawberry",
   "item.tutorialmod.strawberry_seeds": "Strawberry Seeds",
+  "painting.tutorialmod.saw_them.author": "NanoAttack",
+  "painting.tutorialmod.saw_them.title": "Saw Them",
+  "painting.tutorialmod.shrimp.author": "NanoAttack",
+  "painting.tutorialmod.shrimp.title": "Shrimp",
+  "painting.tutorialmod.world.author": "NanoAttack",
+  "painting.tutorialmod.world.title": "World",
   "tooltip.tutorialmod.metal_detector.tooltip": "Detects Valuables Underground!",
   "tooltip.tutorialmod.sound_block.tooltip": "Plays sweet sounds when right clicked!"
 }
