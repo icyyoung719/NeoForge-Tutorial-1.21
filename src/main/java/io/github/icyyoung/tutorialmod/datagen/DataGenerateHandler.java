@@ -56,7 +56,9 @@ public class DataGenerateHandler {
         generator.addProvider(
                 event.includeServer(),
                 new ModGlobalLootModifiersProvider(output, lookupProvider));
-
+        generator.addProvider(
+                event.includeServer(),
+                new ModDatapackProvider(output, lookupProvider));
 //        ModBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
 //                new ModBlockTagGenerator(output, lookupProvider, existingFileHelper));
 //        generator.addProvider(

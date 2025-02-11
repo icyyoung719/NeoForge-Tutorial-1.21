@@ -95,6 +95,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add(getPaintingAuthorKey("shrimp"), "NanoAttack");
         add(getPaintingTitleKey("saw_them"), "Saw Them");
         add(getPaintingAuthorKey("saw_them"), "NanoAttack");
+        // enchantments
+        add(getEnchantmentKey("lightning_striker"), "Lightning Striker");
     }
 
 
@@ -106,5 +108,9 @@ public class ModLanguageProvider extends LanguageProvider {
     }
     private static String getPaintingAuthorKey(String name) {
         return "painting." + TutorialMod.MOD_ID + "." + name.toLowerCase() +".author";
+    }
+    // used for enchantments to translate
+    private static String getEnchantmentKey(String name) {
+        return "enchantment." + TutorialMod.MOD_ID + "." + name.toLowerCase();
     }
 }
