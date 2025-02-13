@@ -79,6 +79,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.SAPPHIRE_HOE);
         //flower items
         simpleBlockItemBlockTexture(ModBlocks.CATMINT);
+        // tree items
+        simpleBlockItemBlockTexture(ModBlocks.BLOODWOOD_SAPLING);
     }
 
 

@@ -2,17 +2,23 @@ package io.github.icyyoung.tutorialmod.block;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.block.custom.CornCropBlock;
+import io.github.icyyoung.tutorialmod.block.custom.ModFlammableRotatedPillarBlock;
 import io.github.icyyoung.tutorialmod.block.custom.SoundBlock;
 import io.github.icyyoung.tutorialmod.block.custom.StrawberryCropBlock;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
+import io.github.icyyoung.tutorialmod.worldgen.tree.ModTreeGrowers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -33,7 +39,6 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BISMUTH_BLOCK = registerBlock("bismuth_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
-
     public static final DeferredBlock<Block> BISMUTH_ORE = registerBlock("bismuth_ore",
          () -> new DropExperienceBlock(UniformInt.of(2, 4),
                  BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -42,7 +47,6 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> RAW_SAPPHIRE_BLOCK = registerBlock("raw_sapphire_block",
             ()-> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
-
     public static final DeferredBlock<Block> SAPPHIRE_ORE = registerBlock("sapphire_ore",
             () -> new DropExperienceBlock( UniformInt.of(2, 4),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
@@ -60,6 +64,7 @@ public class ModBlocks {
                  BlockBehaviour.Properties.ofFullCopy(Blocks.END_STONE)
                  .strength(5f).requiresCorrectToolForDrops()));
 
+
     public static final DeferredBlock<Block> SOUND_BLOCK = registerBlock("sound_block",
             () -> new SoundBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3f).sound(ModSounds.SOUND_BLOCK_SOUNDS)));
 
@@ -69,24 +74,20 @@ public class ModBlocks {
                     BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> SAPPHIRE_SLAB = registerBlock("sapphire_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
-
     public static final DeferredBlock<Block> SAPPHIRE_BUTTON = registerBlock("sapphire_button",
             () -> new ButtonBlock(BlockSetType.IRON,15,BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BUTTON).sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> SAPPHIRE_PRESSURE_PLATE = registerBlock("sapphire_pressure_plate",
             () -> new PressurePlateBlock( BlockSetType.IRON,BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
-
     public static final DeferredBlock<Block> SAPPHIRE_FENCE = registerBlock("sapphire_fence",
             () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> SAPPHIRE_FENCE_GATE = registerBlock("sapphire_fence_gate",
             () -> new FenceGateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST), SoundEvents.CHAIN_PLACE, SoundEvents.ANVIL_BREAK));
     public static final DeferredBlock<Block> SAPPHIRE_WALL = registerBlock("sapphire_wall",
             () -> new WallBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
-
     public static final DeferredBlock<Block> SAPPHIRE_DOOR = registerBlock("sapphire_door",
             () -> new DoorBlock(BlockSetType.IRON,BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST).noOcclusion()));
     public static final DeferredBlock<Block> SAPPHIRE_TRAPDOOR = registerBlock("sapphire_trapdoor",
             () -> new TrapDoorBlock(BlockSetType.IRON,BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST).noOcclusion()));
-
 
 
     public static final DeferredBlock<Block> STRAWBERRY_CROP = BLOCKS.register("strawberry_crop",
@@ -101,6 +102,54 @@ public class ModBlocks {
             () -> new FlowerPotBlock(()-> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.CATMINT,
                     BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM).noOcclusion()));
 
+
+    // tree
+    public static final DeferredBlock<Block> BLOODWOOD_LOG = registerBlock("bloodwood_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
+    public static final DeferredBlock<Block> BLOODWOOD_WOOD = registerBlock("bloodwood_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
+    public static final DeferredBlock<Block> STRIPPED_BLOODWOOD_LOG = registerBlock("stripped_bloodwood_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
+    public static final DeferredBlock<Block> STRIPPED_BLOODWOOD_WOOD = registerBlock("stripped_bloodwood_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
+
+    public static final DeferredBlock<Block> BLOODWOOD_PLANKS = registerBlock("bloodwood_planks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            });
+    public static final DeferredBlock<Block> BLOODWOOD_LEAVES = registerBlock("bloodwood_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 30;
+                }
+            });
+
+    public static final DeferredBlock<Block> BLOODWOOD_SAPLING = registerBlock("bloodwood_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.BLOODWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
 
 

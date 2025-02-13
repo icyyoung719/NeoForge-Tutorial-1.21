@@ -61,6 +61,17 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.CATMINT.get());
         add(ModBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(ModBlocks.POTTED_CATMINT.get()));
 
+        // tree
+        dropSelf(ModBlocks.BLOODWOOD_LOG.get());
+        dropSelf(ModBlocks.BLOODWOOD_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_BLOODWOOD_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_BLOODWOOD_WOOD.get());
+        dropSelf(ModBlocks.BLOODWOOD_PLANKS.get());
+        dropSelf(ModBlocks.BLOODWOOD_SAPLING.get());
+        add(ModBlocks.BLOODWOOD_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.BLOODWOOD_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+
         add(ModBlocks.SAPPHIRE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.SAPPHIRE_SLAB.get()));
         add(ModBlocks.SAPPHIRE_DOOR.get(),

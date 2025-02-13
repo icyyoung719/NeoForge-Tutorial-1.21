@@ -65,5 +65,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.SAPPHIRE_FENCE_GATE.get());
         this.tag(BlockTags.WALLS)
                 .add(ModBlocks.SAPPHIRE_WALL.get());
+
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.BLOODWOOD_LOG.get())
+                .add(ModBlocks.BLOODWOOD_WOOD.get())
+                .add(ModBlocks.STRIPPED_BLOODWOOD_LOG.get())
+                .add(ModBlocks.STRIPPED_BLOODWOOD_WOOD.get());
     }
 }

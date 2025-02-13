@@ -79,6 +79,14 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.CATMINT.get(), "Catmint");
         add(ModBlocks.POTTED_CATMINT.get(), "Potted Catmint");
 
+        add(ModBlocks.BLOODWOOD_LOG.get(), "Bloodwood Log");
+        add(ModBlocks.BLOODWOOD_WOOD.get(), "Bloodwood Wood");
+        add(ModBlocks.BLOODWOOD_PLANKS.get(), "Bloodwood Planks");
+        add(ModBlocks.STRIPPED_BLOODWOOD_LOG.get(), "Stripped Bloodwood Log");
+        add(ModBlocks.STRIPPED_BLOODWOOD_WOOD.get(), "Stripped Bloodwood Wood");
+        add(ModBlocks.BLOODWOOD_LEAVES.get(), "Bloodwood Leaves");
+        add(ModBlocks.BLOODWOOD_SAPLING.get(), "Bloodwood Sapling");
+
 
         //不能直接以这种方式汉化Tab的名称
         add(ModCreativeModeTabs.BISMUTH_ITEM_TAB.get().getDisplayName().getString(), "Bismuth Items");
