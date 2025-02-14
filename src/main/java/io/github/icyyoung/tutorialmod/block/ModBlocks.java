@@ -1,10 +1,7 @@
 package io.github.icyyoung.tutorialmod.block;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
-import io.github.icyyoung.tutorialmod.block.custom.CornCropBlock;
-import io.github.icyyoung.tutorialmod.block.custom.ModFlammableRotatedPillarBlock;
-import io.github.icyyoung.tutorialmod.block.custom.SoundBlock;
-import io.github.icyyoung.tutorialmod.block.custom.StrawberryCropBlock;
+import io.github.icyyoung.tutorialmod.block.custom.*;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
 import io.github.icyyoung.tutorialmod.worldgen.tree.ModTreeGrowers;
@@ -149,7 +146,8 @@ public class ModBlocks {
             });
 
     public static final DeferredBlock<Block> BLOODWOOD_SAPLING = registerBlock("bloodwood_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.BLOODWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
+            () -> new ModSaplingBlock(ModTreeGrowers.BLOODWOOD, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING),
+                    () -> Blocks.NETHERRACK));
 
 
 
