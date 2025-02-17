@@ -4,12 +4,15 @@ import com.mojang.logging.LogUtils;
 import io.github.icyyoung.tutorialmod.block.ModBlocks;
 import io.github.icyyoung.tutorialmod.effect.ModEffects;
 import io.github.icyyoung.tutorialmod.enchantment.ModEnchantmentEffects;
+import io.github.icyyoung.tutorialmod.entity.ModEntities;
+import io.github.icyyoung.tutorialmod.entity.client.GeckoRenderer;
 import io.github.icyyoung.tutorialmod.item.ModArmorMaterials;
 import io.github.icyyoung.tutorialmod.item.ModCreativeModeTabs;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.loot.ModLootModifiers;
 import io.github.icyyoung.tutorialmod.potion.ModPotions;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -56,6 +59,7 @@ public class TutorialMod
         ModPotions.register(modEventBus);
         ModEffects.register(modEventBus);
         ModEnchantmentEffects.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -108,7 +112,7 @@ public class TutorialMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
         }
     }
 }

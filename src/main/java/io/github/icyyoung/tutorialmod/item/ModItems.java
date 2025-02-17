@@ -2,6 +2,7 @@ package io.github.icyyoung.tutorialmod.item;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.block.ModBlocks;
+import io.github.icyyoung.tutorialmod.entity.ModEntities;
 import io.github.icyyoung.tutorialmod.item.custom.ChiselItem;
 import io.github.icyyoung.tutorialmod.item.custom.FuelItem;
 import io.github.icyyoung.tutorialmod.item.custom.MetalDetectorItem;
@@ -9,6 +10,7 @@ import io.github.icyyoung.tutorialmod.item.custom.ModArmorItem;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -85,6 +87,10 @@ public class ModItems {
     //sound disks
     public static final DeferredItem<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.register("bar_brawl_music_disc",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.BAR_BRAWL_KEY).stacksTo(1)));
+    // spawn eggs
+    public static final DeferredItem<Item> GECKO_SPAWN_EGG = ITEMS.register("gecko_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.GECKO, 0x31afaf, 0xffac00,
+                    new Item.Properties()));
 
 
     public static void register(IEventBus eventBus){

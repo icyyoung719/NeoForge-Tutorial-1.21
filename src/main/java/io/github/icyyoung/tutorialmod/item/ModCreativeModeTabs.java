@@ -72,7 +72,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CORN_SEEDS.get());
                         output.accept(ModItems.CORN.get());
                         output.accept(ModItems.BAR_BRAWL_MUSIC_DISC.get());
-
+                        output.accept(ModItems.GECKO_SPAWN_EGG.get());
 
                         output.accept(ModBlocks.SAPPHIRE_BUTTON.get());
                         output.accept(ModBlocks.SAPPHIRE_PRESSURE_PLATE.get());
@@ -92,6 +92,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.BLOODWOOD_PLANKS.get());
                         output.accept(ModBlocks.BLOODWOOD_SAPLING.get());
                         output.accept(ModBlocks.BLOODWOOD_LEAVES.get());
+
                     }).build());
 
     public static void register(IEventBus eventBus){

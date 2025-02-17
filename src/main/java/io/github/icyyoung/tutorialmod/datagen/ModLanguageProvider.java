@@ -105,6 +105,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add(getPaintingAuthorKey("saw_them"), "NanoAttack");
         // enchantments
         add(getEnchantmentKey("lightning_striker"), "Lightning Striker");
+        // entities
+        add(ModItems.GECKO_SPAWN_EGG.get(), "Gecko Spawn Egg");
+        add(getEntityKey("gecko"), "Gecko");
     }
 
 
@@ -120,5 +123,8 @@ public class ModLanguageProvider extends LanguageProvider {
     // used for enchantments to translate
     private static String getEnchantmentKey(String name) {
         return "enchantment." + TutorialMod.MOD_ID + "." + name.toLowerCase();
+    }
+    private static String getEntityKey(String name) {
+        return "entity." + "mccourse" + "." + name.toLowerCase();
     }
 }

@@ -81,6 +81,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleBlockItemBlockTexture(ModBlocks.CATMINT);
         // tree items
         simpleBlockItemBlockTexture(ModBlocks.BLOODWOOD_SAPLING);
+        // egg items
+        withExistingParent(ModItems.GECKO_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
     }
 
 
