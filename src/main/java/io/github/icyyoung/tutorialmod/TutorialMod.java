@@ -6,6 +6,7 @@ import io.github.icyyoung.tutorialmod.effect.ModEffects;
 import io.github.icyyoung.tutorialmod.enchantment.ModEnchantmentEffects;
 import io.github.icyyoung.tutorialmod.entity.ModEntities;
 import io.github.icyyoung.tutorialmod.entity.client.GeckoRenderer;
+import io.github.icyyoung.tutorialmod.entity.client.TomahawkProjectileRenderer;
 import io.github.icyyoung.tutorialmod.item.ModArmorMaterials;
 import io.github.icyyoung.tutorialmod.item.ModCreativeModeTabs;
 import io.github.icyyoung.tutorialmod.item.ModItems;
@@ -113,6 +114,7 @@ public class TutorialMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
+            EntityRenderers.register(ModEntities.TOMAHAWK.get(), TomahawkProjectileRenderer::new);
         }
     }
 }

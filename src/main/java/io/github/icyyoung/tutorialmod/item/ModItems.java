@@ -3,10 +3,7 @@ package io.github.icyyoung.tutorialmod.item;
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.block.ModBlocks;
 import io.github.icyyoung.tutorialmod.entity.ModEntities;
-import io.github.icyyoung.tutorialmod.item.custom.ChiselItem;
-import io.github.icyyoung.tutorialmod.item.custom.FuelItem;
-import io.github.icyyoung.tutorialmod.item.custom.MetalDetectorItem;
-import io.github.icyyoung.tutorialmod.item.custom.ModArmorItem;
+import io.github.icyyoung.tutorialmod.item.custom.*;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
@@ -78,12 +75,13 @@ public class ModItems {
             () -> new ChiselItem(new Item.Properties().durability(32)));
     public static final DeferredItem<Item> PINE_CONE = ITEMS.register("pine_cone",
             () -> new FuelItem(new Item.Properties(),400));
+    public static final DeferredItem<Item> TOMAHAWK = ITEMS.register("tomahawk",
+            () -> new TomahawkItem(new Item.Properties().stacksTo(32)));
     //seeds
     public static final DeferredItem<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds",
             () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));
     public static final DeferredItem<Item> CORN_SEEDS = ITEMS.register("corn_seeds",
             () -> new ItemNameBlockItem(ModBlocks.CORN_CROP.get(), new Item.Properties()));
-
     //sound disks
     public static final DeferredItem<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.register("bar_brawl_music_disc",
             () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.BAR_BRAWL_KEY).stacksTo(1)));

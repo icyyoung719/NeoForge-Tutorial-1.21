@@ -3,6 +3,7 @@ package io.github.icyyoung.tutorialmod.event;
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.entity.ModEntities;
 import io.github.icyyoung.tutorialmod.entity.client.GeckoModel;
+import io.github.icyyoung.tutorialmod.entity.client.TomahawkProjectileModel;
 import io.github.icyyoung.tutorialmod.entity.custom.GeckoEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
@@ -25,6 +26,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(GeckoModel.LAYER_LOCATION, GeckoModel::createBodyLayer);
+        event.registerLayerDefinition(TomahawkProjectileModel.LAYER_LOCATION, TomahawkProjectileModel::createBodyLayer);
     }
 
     @SubscribeEvent
