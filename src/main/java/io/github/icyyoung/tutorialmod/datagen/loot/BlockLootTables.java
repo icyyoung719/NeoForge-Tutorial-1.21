@@ -49,6 +49,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.SAPPHIRE_BLOCK.get());
         dropSelf(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
         dropSelf(ModBlocks.SOUND_BLOCK.get());
+        dropSelf(ModBlocks.CHAIR.get());
 
         dropSelf(ModBlocks.SAPPHIRE_WALL.get());
         dropSelf(ModBlocks.SAPPHIRE_TRAPDOOR.get());
