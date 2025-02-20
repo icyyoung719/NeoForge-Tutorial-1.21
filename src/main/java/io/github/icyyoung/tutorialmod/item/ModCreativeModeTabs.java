@@ -23,40 +23,16 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TutorialMod.MOD_ID);
 
     public static final Supplier<CreativeModeTab> BISMUTH_ITEM_TAB = CREATIVE_MOD_TAB.register("bismuth_item_tab",
-            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.BISMUTH.get()))
+            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.SAPPHIRE.get()))
                     .title(Component.translatable("creativetab.tutorialmod.bismuth_items"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.BISMUTH.get());
                         output.accept(ModItems.RAW_BISMUTH.get());
-                    }).build());
-
-    public static final Supplier<CreativeModeTab> BISMUTH_BLOCK_TAB = CREATIVE_MOD_TAB.register("bismuth_block_tab",
-            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModBlocks.BISMUTH_BLOCK.get()))
-                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "bismuth_item_tab"))
-                    .title(Component.translatable("creativetab.tutorialmod.bismuth_block"))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModBlocks.BISMUTH_BLOCK.get());
-                        output.accept(ModBlocks.BISMUTH_ORE.get());
-                    }).build());
-
-
-    public static final Supplier<CreativeModeTab> TUTORIAL_TAB = CREATIVE_MOD_TAB.register("tutorial_tab",
-            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.SAPPHIRE.get()))
-                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "bismuth_block_tab"))
-                    .title(Component.translatable("creativetab.tutorialmod.sapphire_items"))
-                    .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.SAPPHIRE.get());
                         output.accept(ModItems.RAW_SAPPHIRE.get());
                         output.accept(ModItems.METAL_DETECTOR.get());
                         output.accept(ModItems.CHISEL.get());
                         output.accept(ModItems.STRAWBERRY.get());
-                        output.accept(ModBlocks.SAPPHIRE_BLOCK.get());
-                        output.accept(ModBlocks.SAPPHIRE_ORE.get());
-                        output.accept(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
-                        output.accept(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
-                        output.accept(ModBlocks.END_STONE_SAPPHIRE_ORE.get());
-                        output.accept(ModBlocks.NETHER_SAPPHIRE_ORE.get());
-                        output.accept(ModBlocks.SOUND_BLOCK.get());
                         output.accept(ModItems.PINE_CONE.get());
                         output.accept(ModItems.SAPPHIRE_STAFF.get());
                         output.accept(ModItems.SAPPHIRE_SWORD.get());
@@ -74,6 +50,23 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BAR_BRAWL_MUSIC_DISC.get());
                         output.accept(ModItems.GECKO_SPAWN_EGG.get());
                         output.accept(ModItems.TOMAHAWK.get());
+                        output.accept(ModItems.RADIATION_STAFF);
+                    }).build());
+
+    public static final Supplier<CreativeModeTab> BISMUTH_BLOCK_TAB = CREATIVE_MOD_TAB.register("bismuth_block_tab",
+            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModBlocks.SAPPHIRE_BLOCK.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "bismuth_item_tab"))
+                    .title(Component.translatable("creativetab.tutorialmod.bismuth_block"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.BISMUTH_BLOCK.get());
+                        output.accept(ModBlocks.BISMUTH_ORE.get());
+                        output.accept(ModBlocks.SAPPHIRE_BLOCK.get());
+                        output.accept(ModBlocks.SAPPHIRE_ORE.get());
+                        output.accept(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
+                        output.accept(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                        output.accept(ModBlocks.END_STONE_SAPPHIRE_ORE.get());
+                        output.accept(ModBlocks.NETHER_SAPPHIRE_ORE.get());
+                        output.accept(ModBlocks.SOUND_BLOCK.get());
 
                         output.accept(ModBlocks.SAPPHIRE_BUTTON.get());
                         output.accept(ModBlocks.SAPPHIRE_PRESSURE_PLATE.get());
@@ -94,8 +87,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.BLOODWOOD_PLANKS.get());
                         output.accept(ModBlocks.BLOODWOOD_SAPLING.get());
                         output.accept(ModBlocks.BLOODWOOD_LEAVES.get());
-
                     }).build());
+
+
+//    public static final Supplier<CreativeModeTab> TUTORIAL_TAB = CREATIVE_MOD_TAB.register("tutorial_tab",
+//            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.SAPPHIRE.get()))
+//                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "bismuth_block_tab"))
+//                    .title(Component.translatable("creativetab.tutorialmod.sapphire_items"))
+//                    .displayItems((itemDisplayParameters, output) -> {
+//                    }).build());
 
     public static void register(IEventBus eventBus){
         CREATIVE_MOD_TAB.register(eventBus);

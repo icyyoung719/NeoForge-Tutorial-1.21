@@ -77,6 +77,8 @@ public class ModItems {
             () -> new FuelItem(new Item.Properties(),400));
     public static final DeferredItem<Item> TOMAHAWK = ITEMS.register("tomahawk",
             () -> new TomahawkItem(new Item.Properties().stacksTo(32)));
+    public static final DeferredItem<Item> RADIATION_STAFF = ITEMS.register("radiation_staff",
+            () -> new Item(new Item.Properties().stacksTo(1)));
     //seeds
     public static final DeferredItem<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds",
             () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));

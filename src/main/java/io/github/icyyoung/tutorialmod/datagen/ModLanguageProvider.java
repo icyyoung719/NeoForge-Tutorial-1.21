@@ -35,6 +35,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.STRAWBERRY_SEEDS.get(), "Strawberry Seeds");
         add(ModItems.CORN_SEEDS.get(), "Corn Seeds");
         add(ModItems.TOMAHAWK.get(), "Tomahawk");
+        add(ModItems.RADIATION_STAFF.get(), "Radiation Staff");
         //sound disks
         add(ModItems.BAR_BRAWL_MUSIC_DISC.get(), "Bar Brawl Music Disk");
         add("item.tutorialmod.bar_brawl_music_disc.desc","Bryan Tech - Bar Brawl (CC0)");
@@ -93,7 +94,7 @@ public class ModLanguageProvider extends LanguageProvider {
         //不能直接以这种方式汉化Tab的名称
         add(ModCreativeModeTabs.BISMUTH_ITEM_TAB.get().getDisplayName().getString(), "Bismuth Items");
         add(ModCreativeModeTabs.BISMUTH_BLOCK_TAB.get().getDisplayName().getString(),"Bismuth Blocks");
-        add(ModCreativeModeTabs.TUTORIAL_TAB.get().getDisplayName().getString(),"Creative Mod Tab");
+        // add(ModCreativeModeTabs.TUTORIAL_TAB.get().getDisplayName().getString(),"Creative Mod Tab");
 //        add(ModCreativeModeTabs.CREATIVE_MOD_TAB.getRegistryName().toLanguageKey(),"Creative Mod Tab");
         //tooltips
         add("tooltip.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
