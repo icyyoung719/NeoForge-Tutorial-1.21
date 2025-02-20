@@ -3,6 +3,7 @@ package io.github.icyyoung.tutorialmod.event;
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.potion.ModPotions;
+import io.github.icyyoung.tutorialmod.villager.ModVillagers;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -28,6 +29,7 @@ import java.util.List;
 
 @EventBusSubscriber(modid = TutorialMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class ModEvents {
+
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
         if(event.getType() == VillagerProfession.FARMER) {
@@ -48,6 +50,18 @@ public class ModEvents {
                     new ItemStack(ModItems.CORN_SEEDS.get(), 2),
                     2, 12, 0.075f));
         }
+        if(event.getType() == ModVillagers.KAUPENGER.value()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            trades.get(1).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 2),
+                    new ItemStack(ModItems.RAW_BISMUTH.get(), 18), 6, 3, 0.05f));
+            trades.get(1).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.DIAMOND, 16),
+                    new ItemStack(ModItems.RADIATION_STAFF.get(), 1), 6, 3, 0.05f));
+            trades.get(2).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.ENDER_PEARL, 2),
+                    new ItemStack(ModItems.SAPPHIRE_SWORD.get(), 1), 2, 8, 0.05f));
+        }
 //        if(event.getType() == VillagerProfession.LIBRARIAN) {
 //            Holder<Enchantment> enchantmentHolder =
 //            //Registry<Enchantment> registry = level().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
@@ -61,6 +75,7 @@ public class ModEvents {
 //                    2, 8, 0.02f));
 //        }
     }
+
     @SubscribeEvent
     public static void addCustomWanderingTrades(WandererTradesEvent event) {
         List<VillagerTrades.ItemListing> genericTrades = event.getGenericTrades();
