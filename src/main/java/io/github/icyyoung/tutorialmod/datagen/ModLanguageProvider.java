@@ -67,6 +67,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.NETHER_SAPPHIRE_ORE.get(), "Nether Sapphire Ore");
         add(ModBlocks.END_STONE_SAPPHIRE_ORE.get(), "End Stone Sapphire Ore");
         add(ModBlocks.SOUND_BLOCK.get(), "Sound Block");
+        add(ModBlocks.CHAIR.get(), "Chair Block");
 
         add(ModBlocks.SAPPHIRE_BUTTON.get(), "Sapphire Button");
         add(ModBlocks.SAPPHIRE_PRESSURE_PLATE.get(), "Sapphire Pressure Plate");

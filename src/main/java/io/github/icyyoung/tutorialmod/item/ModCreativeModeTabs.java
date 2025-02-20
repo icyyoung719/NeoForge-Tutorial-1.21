@@ -85,6 +85,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.SAPPHIRE_TRAPDOOR.get());
                         output.accept(ModBlocks.SAPPHIRE_DOOR.get());
                         output.accept(ModBlocks.CATMINT.get());
+                        output.accept(ModBlocks.CHAIR.get());
 
                         output.accept(ModBlocks.BLOODWOOD_LOG.get());
                         output.accept(ModBlocks.BLOODWOOD_WOOD.get());
