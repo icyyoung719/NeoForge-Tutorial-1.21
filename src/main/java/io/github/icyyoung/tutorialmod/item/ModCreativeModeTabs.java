@@ -51,6 +51,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.GECKO_SPAWN_EGG.get());
                         output.accept(ModItems.TOMAHAWK.get());
                         output.accept(ModItems.RADIATION_STAFF);
+                        output.accept(ModItems.SAPPHIRE_BOW);
                     }).build());
 
     public static final Supplier<CreativeModeTab> BISMUTH_BLOCK_TAB = CREATIVE_MOD_TAB.register("bismuth_block_tab",

@@ -14,6 +14,7 @@ import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.loot.ModLootModifiers;
 import io.github.icyyoung.tutorialmod.potion.ModPotions;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
+import io.github.icyyoung.tutorialmod.util.ModItemProperties;
 import io.github.icyyoung.tutorialmod.villager.ModVillagers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -116,6 +117,8 @@ public class TutorialMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            ModItemProperties.addCustomProperties();
+
             EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
             EntityRenderers.register(ModEntities.TOMAHAWK.get(), TomahawkProjectileRenderer::new);
             EntityRenderers.register(ModEntities.CHAIR_ENTITY.get(), ChairRenderer::new);

@@ -34,6 +34,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> CORN = ITEMS.register("corn",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<BowItem> SAPPHIRE_BOW = ITEMS.register("sapphire_bow",
+            () -> new BowItem(new Item.Properties().durability(500)));
     //simple tools
     public static final DeferredItem<Item> SAPPHIRE_SWORD = ITEMS.register("sapphire_sword",
                 () -> new SwordItem(ModToolTiers.SAPPHIRE,
