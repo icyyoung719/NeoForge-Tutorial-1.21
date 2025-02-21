@@ -2,12 +2,15 @@ package io.github.icyyoung.tutorialmod.event;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -42,37 +45,49 @@ public class ModClientEvents {
         }
     }
     @SubscribeEvent
-    public static void onEnderBowHit(ProjectileImpactEvent evt) {
+    public static void onSapphireBowHit(ProjectileImpactEvent evt) {
         Projectile arrow = evt.getProjectile();
-        if (arrow.getOwner() instanceof Player player
-                && evt.getRayTraceResult() instanceof EntityHitResult result
-                && result.getEntity() instanceof LivingEntity living
-                && arrow.getOwner() != result.getEntity() && !result.getEntity().getType().is(Tags.EntityTypes.BOSSES)) {
+        if (arrow.getOwner() instanceof Player player) {
+            HitResult rayTraceResult = evt.getRayTraceResult();
 
-            if (arrow.getPersistentData().contains(ModItems.SAPPHIRE_BOW.getRegisteredName())) {
-                double sourceX = player.getX(), sourceY = player.getY(), sourceZ = player.getZ();
-                float sourceYaw = player.getYRot(), sourcePitch = player.getXRot();
-                @Nullable Entity playerVehicle = player.getVehicle();
+            if (rayTraceResult instanceof EntityHitResult result
+                    && result.getEntity() instanceof LivingEntity living
+                    && arrow.getOwner() != result.getEntity() && !result.getEntity().getType().is(Tags.EntityTypes.BOSSES)) {
 
-                player.setYRot(living.getYRot());
-                player.teleportTo(living.getX(), living.getY(), living.getZ());
-                player.invulnerableTime = 40;
-                player.level().broadcastEntityEvent(player, (byte) 46);
-                if (living.isPassenger() && living.getVehicle() != null) {
-                    player.startRiding(living.getVehicle(), true);
-                    living.stopRiding();
+                if (arrow.getPersistentData().contains(ModItems.SAPPHIRE_BOW.getRegisteredName())) {
+                    double sourceX = player.getX(), sourceY = player.getY(), sourceZ = player.getZ();
+                    float sourceYaw = player.getYRot(), sourcePitch = player.getXRot();
+                    @Nullable Entity playerVehicle = player.getVehicle();
+
+                    player.setYRot(living.getYRot());
+                    player.teleportTo(living.getX(), living.getY(), living.getZ());
+                    player.invulnerableTime = 40;
+                    player.level().broadcastEntityEvent(player, (byte) 46);
+                    if (living.isPassenger() && living.getVehicle() != null) {
+                        player.startRiding(living.getVehicle(), true);
+                        living.stopRiding();
+                    }
+                    player.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+
+                    living.setYRot(sourceYaw);
+                    living.setXRot(sourcePitch);
+                    living.teleportTo(sourceX, sourceY, sourceZ);
+                    living.level().broadcastEntityEvent(player, (byte) 46);
+                    if (playerVehicle != null) {
+                        living.startRiding(playerVehicle, true);
+                        player.stopRiding();
+                    }
+                    living.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
                 }
-                player.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+            } else if (rayTraceResult.getType() == HitResult.Type.BLOCK) {
+                BlockPos blockPos = ((BlockHitResult) rayTraceResult).getBlockPos();
 
-                living.setYRot(sourceYaw);
-                living.setXRot(sourcePitch);
-                living.teleportTo(sourceX, sourceY, sourceZ);
-                living.level().broadcastEntityEvent(player, (byte) 46);
-                if (playerVehicle != null) {
-                    living.startRiding(playerVehicle, true);
-                    player.stopRiding();
+                if (arrow.getPersistentData().contains(ModItems.SAPPHIRE_BOW.getRegisteredName())) {
+                    player.teleportTo(blockPos.getX() + 0.5, blockPos.getY() + 1, blockPos.getZ() + 0.5);
+                    player.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
+                    player.invulnerableTime = 40;
+                    player.level().broadcastEntityEvent(player, (byte) 46);
                 }
-                living.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
             }
         }
     }
