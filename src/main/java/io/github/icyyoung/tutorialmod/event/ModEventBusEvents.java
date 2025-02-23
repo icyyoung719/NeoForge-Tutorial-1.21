@@ -6,6 +6,7 @@ import io.github.icyyoung.tutorialmod.entity.client.GeckoModel;
 import io.github.icyyoung.tutorialmod.entity.client.RhinoModel;
 import io.github.icyyoung.tutorialmod.entity.client.TomahawkProjectileModel;
 import io.github.icyyoung.tutorialmod.entity.custom.GeckoEntity;
+import io.github.icyyoung.tutorialmod.entity.custom.RhinoEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -34,7 +35,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event){
         event.put(ModEntities.GECKO.get(), GeckoEntity.createAttributes().build());
-        event.put(ModEntities.RHINO.get(), GeckoEntity.createAttributes().build());
+        event.put(ModEntities.RHINO.get(), RhinoEntity.createAttributes().build());
     }
 
     @SubscribeEvent
