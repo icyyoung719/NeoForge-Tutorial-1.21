@@ -7,6 +7,7 @@ import io.github.icyyoung.tutorialmod.enchantment.ModEnchantmentEffects;
 import io.github.icyyoung.tutorialmod.entity.ModEntities;
 import io.github.icyyoung.tutorialmod.entity.client.ChairRenderer;
 import io.github.icyyoung.tutorialmod.entity.client.GeckoRenderer;
+import io.github.icyyoung.tutorialmod.entity.client.RhinoRenderer;
 import io.github.icyyoung.tutorialmod.entity.client.TomahawkProjectileRenderer;
 import io.github.icyyoung.tutorialmod.item.ModArmorMaterials;
 import io.github.icyyoung.tutorialmod.item.ModCreativeModeTabs;
@@ -120,6 +121,7 @@ public class TutorialMod
             ModItemProperties.addCustomProperties();
 
             EntityRenderers.register(ModEntities.GECKO.get(), GeckoRenderer::new);
+            EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
             EntityRenderers.register(ModEntities.TOMAHAWK.get(), TomahawkProjectileRenderer::new);
             EntityRenderers.register(ModEntities.CHAIR_ENTITY.get(), ChairRenderer::new);
         }

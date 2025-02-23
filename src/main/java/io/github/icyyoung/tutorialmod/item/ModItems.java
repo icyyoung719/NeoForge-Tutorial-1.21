@@ -35,7 +35,7 @@ public class ModItems {
     public static final DeferredItem<Item> CORN = ITEMS.register("corn",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<BowItem> SAPPHIRE_BOW = ITEMS.register("sapphire_bow",
-            () -> new SapphireBow(new Item.Properties().durability(500)));
+            () -> new SapphireBowItem(new Item.Properties().durability(500)));
     //simple tools
     public static final DeferredItem<Item> SAPPHIRE_SWORD = ITEMS.register("sapphire_sword",
                 () -> new SwordItem(ModToolTiers.SAPPHIRE,
@@ -92,6 +92,9 @@ public class ModItems {
     // spawn eggs
     public static final DeferredItem<Item> GECKO_SPAWN_EGG = ITEMS.register("gecko_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.GECKO, 0x31afaf, 0xffac00,
+                    new Item.Properties()));
+    public static final DeferredItem<Item> RHINO_SPAWN_EGG = ITEMS.register("rhino_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.RHINO, 0x7e9680, 0xc5d1c5,
                     new Item.Properties()));
 
 

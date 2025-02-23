@@ -49,6 +49,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CORN.get());
                         output.accept(ModItems.BAR_BRAWL_MUSIC_DISC.get());
                         output.accept(ModItems.GECKO_SPAWN_EGG.get());
+                        output.accept(ModItems.RHINO_SPAWN_EGG.get());
                         output.accept(ModItems.TOMAHAWK.get());
                         output.accept(ModItems.RADIATION_STAFF);
                         output.accept(ModItems.SAPPHIRE_BOW);

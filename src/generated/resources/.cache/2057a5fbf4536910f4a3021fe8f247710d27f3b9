@@ -1,4 +1,4 @@
-// 1.21.1	2025-02-20T11:19:14.902083	Item Models: tutorialmod
+// 1.21.1	2025-02-23T21:15:02.7270656	Item Models: tutorialmod
 f746b64540daf2ab6302b3ec01a78490c48fc10b assets/tutorialmod/models/item/bar_brawl_music_disc.json
 85c4092ee8a88b79898e775ffd1ddd7a535d2b66 assets/tutorialmod/models/item/bismuth.json
 a118ac7349d7896719a282e634bc3604295f34bd assets/tutorialmod/models/item/bismuth_block.json
@@ -17,6 +17,7 @@ d56de8e6898d1c12a15eca045badafe1947aa387 assets/tutorialmod/models/item/pine_con
 4632490c178511af06a636377c35e6caf64df3f1 assets/tutorialmod/models/item/raw_bismuth.json
 d24305376f58c1ef118279a5c8f5b087a07b1d47 assets/tutorialmod/models/item/raw_sapphire.json
 a7f864f8f8c67b25b34627c0dd8357e96b5d5c79 assets/tutorialmod/models/item/raw_sapphire_block.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/tutorialmod/models/item/rhino_spawn_egg.json
 0a16bffc527696b64e4304b7efccfda93e2b9422 assets/tutorialmod/models/item/sapphire.json
 72e891dd0d4eeff5cd14ecf7f4740f6ba5e7017b assets/tutorialmod/models/item/sapphire_axe.json
 2bf7f614770184be679bb0313dc04832b7fdd577 assets/tutorialmod/models/item/sapphire_block.json

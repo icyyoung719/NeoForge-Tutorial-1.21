@@ -11,8 +11,8 @@ import net.minecraft.world.item.ItemStack;
  * @Date 2025/2/21
  */
 
-public class SapphireBow extends BowItem {
-    public SapphireBow(Properties properties) {
+public class SapphireBowItem extends BowItem {
+    public SapphireBowItem(Properties properties) {
         super(properties);
     }
 

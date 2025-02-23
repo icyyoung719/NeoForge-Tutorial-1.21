@@ -112,6 +112,8 @@ public class ModLanguageProvider extends LanguageProvider {
         // entities
         add(ModItems.GECKO_SPAWN_EGG.get(), "Gecko Spawn Egg");
         add(getEntityKey("gecko"), "Gecko");
+        add(ModItems.RHINO_SPAWN_EGG.get(), "Rhino Spawn Egg");
+        add(getEntityKey("rhino"), "Rhino");
         add(getEntityKey("tomahawk"), "Tomahawk");
         add("entity.minecraft.villager.tutorialmod.kaupenger", "Kaupenger");
     }
