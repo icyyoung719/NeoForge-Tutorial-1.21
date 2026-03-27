@@ -53,6 +53,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TOMAHAWK.get());
                         output.accept(ModItems.RADIATION_STAFF);
                         output.accept(ModItems.SAPPHIRE_BOW);
+                        output.accept(ModItems.HOUSE_BUILDER.get());
                     }).build());
 
     public static final Supplier<CreativeModeTab> BISMUTH_BLOCK_TAB = CREATIVE_MOD_TAB.register("bismuth_block_tab",

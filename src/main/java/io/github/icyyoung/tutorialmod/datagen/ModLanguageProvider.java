@@ -37,6 +37,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.TOMAHAWK.get(), "Tomahawk");
         add(ModItems.RADIATION_STAFF.get(), "Radiation Staff");
         add(ModItems.SAPPHIRE_BOW.get(), "Sapphire Bow");
+        add(ModItems.HOUSE_BUILDER.get(), "House Builder");
         //sound disks
         add(ModItems.BAR_BRAWL_MUSIC_DISC.get(), "Bar Brawl Music Disk");
         add("item.tutorialmod.bar_brawl_music_disc.desc","Bryan Tech - Bar Brawl (CC0)");
@@ -100,6 +101,10 @@ public class ModLanguageProvider extends LanguageProvider {
         //tooltips
         add("tooltip.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
         add("tooltip.tutorialmod.sound_block.tooltip","Plays sweet sounds when right clicked!");
+        add("tooltip.tutorialmod.house_builder.tooltip", "Right-click a block to deploy a small wooden house.");
+        add("tooltip.tutorialmod.house_builder.tooltip_blocked", "Placement fails if the build area is blocked.");
+        add("message.tutorialmod.house_builder.blocked", "Cannot place house: area is blocked.");
+        add("message.tutorialmod.house_builder.success", "House deployed.");
         //paintings
         add(getPaintingTitleKey("world"), "World");
         add(getPaintingAuthorKey("world"), "NanoAttack");

@@ -81,6 +81,8 @@ public class ModItems {
             () -> new TomahawkItem(new Item.Properties().stacksTo(32)));
     public static final DeferredItem<Item> RADIATION_STAFF = ITEMS.register("radiation_staff",
             () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> HOUSE_BUILDER = ITEMS.register("house_builder",
+            () -> new HouseBuilderItem(new Item.Properties().stacksTo(16)));
     //seeds
     public static final DeferredItem<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds",
             () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));
