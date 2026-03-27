@@ -102,9 +102,14 @@ public class ModLanguageProvider extends LanguageProvider {
         add("tooltip.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
         add("tooltip.tutorialmod.sound_block.tooltip","Plays sweet sounds when right clicked!");
         add("tooltip.tutorialmod.house_builder.tooltip", "Right-click a block to deploy a small wooden house.");
+        add("tooltip.tutorialmod.house_builder.mode", "Current blueprint: %s");
+        add("tooltip.tutorialmod.house_builder.mode.normal", "Wooden House");
+        add("tooltip.tutorialmod.house_builder.mode.villager", "Villager House");
+        add("tooltip.tutorialmod.house_builder.switch", "Sneak + right-click to switch blueprint.");
         add("tooltip.tutorialmod.house_builder.tooltip_blocked", "Placement fails if the build area is blocked.");
         add("message.tutorialmod.house_builder.blocked", "Cannot place house: area is blocked.");
-        add("message.tutorialmod.house_builder.success", "House deployed.");
+        add("message.tutorialmod.house_builder.success", "%s deployed.");
+        add("message.tutorialmod.house_builder.mode_switched", "Blueprint switched to: %s");
         //paintings
         add(getPaintingTitleKey("world"), "World");
         add(getPaintingAuthorKey("world"), "NanoAttack");

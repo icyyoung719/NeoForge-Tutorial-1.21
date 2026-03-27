@@ -37,7 +37,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.STRAWBERRY.get());
         basicItem(ModItems.CORN.get());
         basicItem(ModItems.PINE_CONE.get());
-        generatedItemWithTexture(ModItems.HOUSE_BUILDER, mcLoc("item/oak_door"));
+        basicItem(ModItems.HOUSE_BUILDER.get());
         //sound disks
         basicItem(ModItems.BAR_BRAWL_MUSIC_DISC.get());
         //crop seeds
@@ -93,11 +93,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/handheld")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(TutorialMod.MOD_ID, "item/" + item.getId().getPath()));
-    }
-
-    private void generatedItemWithTexture(DeferredItem<Item> item, ResourceLocation texture) {
-        withExistingParent(item.getId().getPath(), mcLoc("item/generated"))
-                .texture("layer0", texture);
     }
 
     public void evenSimplerBlockItem(DeferredBlock<Block> block) {
