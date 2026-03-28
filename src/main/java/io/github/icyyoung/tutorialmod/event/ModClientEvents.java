@@ -36,6 +36,9 @@ import net.minecraft.client.Minecraft;
 import io.github.icyyoung.tutorialmod.client.minimap.MapDataManager;
 import io.github.icyyoung.tutorialmod.client.minimap.MapStorage;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+import net.minecraft.world.level.storage.LevelResource;
+import net.neoforged.fml.loading.FMLPaths;
+import java.nio.file.Path;
 
 /**
  * @Description TODO
@@ -157,15 +160,20 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void onPlayerJoin(ClientPlayerNetworkEvent.LoggingIn event) {
         Minecraft mc = Minecraft.getInstance();
-        String id;
+        Path saveDir = null;
+        
         if (mc.hasSingleplayerServer() && mc.getSingleplayerServer() != null) {
-            id = mc.getSingleplayerServer().getWorldData().getLevelName();
+            // Save inside the specific world's save directory.
+            saveDir = mc.getSingleplayerServer().getWorldPath(LevelResource.ROOT).resolve("tutorialmod_minimap");
         } else if (mc.getCurrentServer() != null) {
-            id = mc.getCurrentServer().ip;
+            // Multiplayer: save in the global game directory under the server IP.
+            String ip = mc.getCurrentServer().ip.replaceAll("[^a-zA-Z0-9.-]", "_");
+            saveDir = FMLPaths.GAMEDIR.get().resolve("tutorialmod").resolve("minimap").resolve("multiplayer_" + ip);
         } else {
-            id = "unknown_world";
+            saveDir = FMLPaths.GAMEDIR.get().resolve("tutorialmod").resolve("minimap").resolve("unknown_world");
         }
-        MapStorage.setWorld(id);
+        
+        MapStorage.setSaveDir(saveDir);
     }
 
     @SubscribeEvent

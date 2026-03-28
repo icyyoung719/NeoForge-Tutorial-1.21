@@ -3,6 +3,8 @@ package io.github.icyyoung.tutorialmod.client.minimap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.level.storage.LevelResource;
 import net.neoforged.fml.loading.FMLPaths;
 
 import java.io.File;
@@ -20,20 +22,22 @@ import java.util.HashMap;
 
 public class MapStorage {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static String currentSaveDirId;
+    private static Path currentSaveDir;
 
     public static List<Waypoint> waypoints = new ArrayList<>();
 
-    public static void setWorld(String id) {
-        currentSaveDirId = id.replaceAll("[^a-zA-Z0-9.-]", "_");
+    public static void setSaveDir(Path dir) {
+        currentSaveDir = dir;
         MapDataManager.clear();
         waypoints.clear();
-        load();
+        if (currentSaveDir != null) {
+            load();
+        }
     }
 
     public static void save() {
-        if (currentSaveDirId == null) return;
-        Path dir = getDir();
+        if (currentSaveDir == null) return;
+        Path dir = currentSaveDir;
         if (!Files.exists(dir)) {
             try {
                 Files.createDirectories(dir);
@@ -79,8 +83,8 @@ public class MapStorage {
     }
 
     public static void load() {
-        if (currentSaveDirId == null) return;
-        Path dir = getDir();
+        if (currentSaveDir == null) return;
+        Path dir = currentSaveDir;
 
         // Load waypoints
         File waypointsFile = dir.resolve("waypoints.json").toFile();
@@ -146,9 +150,5 @@ public class MapStorage {
                       (bytes[i * 4 + 3] & 0xFF);
         }
         MapDataManager.getChunkDataMap(dim).put(key, ints);
-    }
-
-    private static Path getDir() {
-        return FMLPaths.GAMEDIR.get().resolve("tutorialmod").resolve("minimap").resolve(currentSaveDirId);
     }
 }
