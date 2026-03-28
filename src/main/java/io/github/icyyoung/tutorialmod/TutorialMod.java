@@ -36,6 +36,12 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
+import io.github.icyyoung.tutorialmod.client.keymapping.ModKeyBindings;
+import io.github.icyyoung.tutorialmod.client.minimap.MinimapOverlay;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.minecraft.resources.ResourceLocation;
+
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(TutorialMod.MOD_ID)
 public class TutorialMod
@@ -126,6 +132,20 @@ public class TutorialMod
             EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
             EntityRenderers.register(ModEntities.TOMAHAWK.get(), TomahawkProjectileRenderer::new);
             EntityRenderers.register(ModEntities.CHAIR_ENTITY.get(), ChairRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerGuiLayers(RegisterGuiLayersEvent event) {
+            event.registerAboveAll(
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "minimap"),
+                new MinimapOverlay()
+            );
+        }
+
+        @SubscribeEvent
+        public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
+            event.register(ModKeyBindings.MINIMAP_TOGGLE_KEY);
+            event.register(ModKeyBindings.FULL_MAP_KEY);
         }
     }
 }

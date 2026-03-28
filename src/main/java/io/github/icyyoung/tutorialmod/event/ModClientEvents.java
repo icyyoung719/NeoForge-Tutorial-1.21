@@ -28,6 +28,15 @@ import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
+import io.github.icyyoung.tutorialmod.client.minimap.FullScreenMapScreen;
+import io.github.icyyoung.tutorialmod.client.minimap.MinimapOverlay;
+import io.github.icyyoung.tutorialmod.client.keymapping.ModKeyBindings;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.minecraft.client.Minecraft;
+import io.github.icyyoung.tutorialmod.client.minimap.MapDataManager;
+import io.github.icyyoung.tutorialmod.client.minimap.MapStorage;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+
 /**
  * @Description TODO
  * @Author icyyoung
@@ -117,5 +126,50 @@ public class ModClientEvents {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onClientTick(ClientTickEvent.Post event) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player != null && mc.level != null) {
+            // Update explored map state occasionally
+            if (mc.player.tickCount % 20 == 0) {
+                int centerCX = mc.player.chunkPosition().x;
+                int centerCZ = mc.player.chunkPosition().z;
+                // Generate immediately nearby chunks just in case
+                for (int dx = -1; dx <= 1; dx++) {
+                    for (int dz = -1; dz <= 1; dz++) {
+                        MapDataManager.updateChunk(mc.level, centerCX + dx, centerCZ + dz);
+                    }
+                }
+            }
+
+            while (ModKeyBindings.MINIMAP_TOGGLE_KEY.consumeClick()) {
+                MinimapOverlay.enabled = !MinimapOverlay.enabled;
+            }
+
+            while (ModKeyBindings.FULL_MAP_KEY.consumeClick()) {
+                mc.setScreen(new FullScreenMapScreen());
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoin(ClientPlayerNetworkEvent.LoggingIn event) {
+        Minecraft mc = Minecraft.getInstance();
+        String id;
+        if (mc.hasSingleplayerServer() && mc.getSingleplayerServer() != null) {
+            id = mc.getSingleplayerServer().getWorldData().getLevelName();
+        } else if (mc.getCurrentServer() != null) {
+            id = mc.getCurrentServer().ip;
+        } else {
+            id = "unknown_world";
+        }
+        MapStorage.setWorld(id);
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLeave(ClientPlayerNetworkEvent.LoggingOut event) {
+        MapStorage.save();
     }
 }
