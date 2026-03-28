@@ -73,12 +73,7 @@ public class MinimapOverlay implements LayeredDraw.Layer {
                                 if (screenX >= 0 && screenX < MAP_SIZE * 2 && screenZ >= 0 && screenZ < MAP_SIZE * 2) {        
                                     int argb = chunkData[x + (z * 16)];
                                     if (argb != 0) {
-                                        int a = (argb >> 24) & 0xFF;
-                                        int r = (argb >> 16) & 0xFF;
-                                        int g = (argb >> 8) & 0xFF;
-                                        int b = argb & 0xFF;
-                                        int colorABGR = (a << 24) | (b << 16) | (g << 8) | r;
-                                        image.setPixelRGBA(screenX, screenZ, colorABGR);
+                                        image.setPixelRGBA(screenX, screenZ, argb);
                                     }
                                 }
                             }

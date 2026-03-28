@@ -98,12 +98,7 @@ public class FullScreenMapScreen extends Screen {
                         for (int z = 0; z < 16; z++) {
                             int argb = data[x + (z * 16)];
                             if (argb != 0) {
-                                int a = (argb >> 24) & 0xFF;
-                                int r = (argb >> 16) & 0xFF;
-                                int g = (argb >> 8) & 0xFF;
-                                int b = argb & 0xFF;
-                                int colorABGR = (a << 24) | (b << 16) | (g << 8) | r;
-                                image.setPixelRGBA((cx << 4) + x, (cz << 4) + z, colorABGR);
+                                image.setPixelRGBA((cx << 4) + x, (cz << 4) + z, argb);
                             }
                         }
                     }
@@ -243,6 +238,10 @@ public class FullScreenMapScreen extends Screen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (keyCode == org.lwjgl.glfw.GLFW.GLFW_KEY_M) {
+            this.onClose();
+            return true;
+        }
         if (keyCode == 260) { // Insert key
             Minecraft mc = Minecraft.getInstance();
             if (mc.player != null && mc.level != null) {
