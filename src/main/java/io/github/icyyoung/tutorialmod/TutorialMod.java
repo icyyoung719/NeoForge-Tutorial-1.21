@@ -15,6 +15,7 @@ import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.loot.ModLootModifiers;
 import io.github.icyyoung.tutorialmod.potion.ModPotions;
 import io.github.icyyoung.tutorialmod.sound.ModSounds;
+import io.github.icyyoung.tutorialmod.network.ModMessages;
 import io.github.icyyoung.tutorialmod.util.ModItemProperties;
 import io.github.icyyoung.tutorialmod.villager.ModVillagers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -66,6 +67,7 @@ public class TutorialMod
         ModEnchantmentEffects.register(modEventBus);
         ModEntities.register(modEventBus);
         ModVillagers.register(modEventBus);
+        modEventBus.addListener(ModMessages::registerPayloadHandlers);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

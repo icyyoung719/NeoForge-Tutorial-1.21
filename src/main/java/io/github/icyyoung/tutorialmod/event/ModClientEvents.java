@@ -2,12 +2,18 @@ package io.github.icyyoung.tutorialmod.event;
 
 import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.item.ModItems;
+import io.github.icyyoung.tutorialmod.network.payload.SortChestPayload;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -15,8 +21,10 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 
@@ -28,6 +36,25 @@ import javax.annotation.Nullable;
 
 @EventBusSubscriber(modid = TutorialMod.MOD_ID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public class ModClientEvents {
+    @SubscribeEvent
+    public static void onScreenInit(ScreenEvent.Init.Post event) {
+        if (!(event.getScreen() instanceof ContainerScreen containerScreen)) {
+            return;
+        }
+        if (!(containerScreen.getMenu() instanceof ChestMenu chestMenu)) {
+            return;
+        }
+
+        int buttonX = containerScreen.getGuiLeft() + containerScreen.getXSize() - 20;
+        int buttonY = containerScreen.getGuiTop() + 4;
+        Button sortButton = Button.builder(Component.translatable("button.tutorialmod.sort_chest"),
+                        button -> PacketDistributor.sendToServer(new SortChestPayload(chestMenu.containerId)))
+                .bounds(buttonX, buttonY, 16, 16)
+                .tooltip(Tooltip.create(Component.translatable("tooltip.tutorialmod.sort_chest")))
+                .build();
+        event.addListener(sortButton);
+    }
+
     @SubscribeEvent
     public static void onComputeFovModifierEvent(ComputeFovModifierEvent event) {
         Player player = event.getPlayer();
