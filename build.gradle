@@ -18,6 +18,7 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+    mavenCentral()
 }
 
 base {
@@ -112,6 +113,14 @@ configurations {
 }
 
 dependencies {
+    // MP3 Playback support
+    implementation 'javazoom:jlayer:1.0.1'
+    additionalRuntimeClasspath 'javazoom:jlayer:1.0.1'
+    jarJar "javazoom:jlayer:[1.0.1, 2.0)"
+    implementation 'com.mpatric:mp3agic:0.9.1'
+    additionalRuntimeClasspath 'com.mpatric:mp3agic:0.9.1'
+    jarJar "com.mpatric:mp3agic:[0.9.1, 1.0)"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

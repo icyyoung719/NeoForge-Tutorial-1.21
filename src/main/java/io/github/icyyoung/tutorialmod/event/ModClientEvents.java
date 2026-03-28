@@ -31,6 +31,7 @@ import javax.annotation.Nullable;
 import io.github.icyyoung.tutorialmod.client.minimap.FullScreenMapScreen;
 import io.github.icyyoung.tutorialmod.client.minimap.MinimapOverlay;
 import io.github.icyyoung.tutorialmod.client.keymapping.ModKeyBindings;
+import io.github.icyyoung.tutorialmod.client.screen.MusicPlayerScreen;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.minecraft.client.Minecraft;
 import io.github.icyyoung.tutorialmod.client.minimap.MapDataManager;
@@ -153,6 +154,10 @@ public class ModClientEvents {
 
             while (ModKeyBindings.FULL_MAP_KEY.consumeClick()) {
                 mc.setScreen(new FullScreenMapScreen());
+            }
+
+            while (ModKeyBindings.MUSIC_GUI_KEY.consumeClick()) {
+                mc.setScreen(new MusicPlayerScreen());
             }
         }
     }

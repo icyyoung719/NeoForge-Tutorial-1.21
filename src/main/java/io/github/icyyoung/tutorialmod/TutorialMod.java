@@ -146,6 +146,7 @@ public class TutorialMod
         public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
             event.register(ModKeyBindings.MINIMAP_TOGGLE_KEY);
             event.register(ModKeyBindings.FULL_MAP_KEY);
+            event.register(ModKeyBindings.MUSIC_GUI_KEY);
         }
     }
 }

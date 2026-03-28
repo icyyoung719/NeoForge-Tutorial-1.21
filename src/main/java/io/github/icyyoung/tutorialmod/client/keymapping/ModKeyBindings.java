@@ -18,4 +18,10 @@ public class ModKeyBindings {
             InputConstants.KEY_M,
             KEY_CATEGORY_TUTORIALMOD
     );
+
+    public static final KeyMapping MUSIC_GUI_KEY = new KeyMapping(
+            "key." + TutorialMod.MOD_ID + ".music_gui",
+            InputConstants.KEY_P,
+            KEY_CATEGORY_TUTORIALMOD
+    );
 }
