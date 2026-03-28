@@ -1,7 +1,6 @@
 package io.github.icyyoung.tutorialmod.client.minimap;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import io.github.icyyoung.tutorialmod.TutorialMod;
@@ -11,13 +10,12 @@ import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.client.DeltaTracker;
 
 public class MinimapOverlay implements LayeredDraw.Layer {
     public static boolean enabled = true;
-    public static final int MAP_SIZE = 64; 
-    
+    public static final int MAP_SIZE = 64;
+
     private DynamicTexture minimapTexture;
     private ResourceLocation minimapTextureLocation;
 
@@ -28,16 +26,16 @@ public class MinimapOverlay implements LayeredDraw.Layer {
             Minecraft.getInstance().getTextureManager().register(minimapTextureLocation, minimapTexture);
         }
     }
-    
+
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         if (!enabled) return;
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         if (player == null || mc.level == null) return;
-        
+
         initTexture();
-        
+
         int screenWidth = guiGraphics.guiWidth();
         int mapDiameter = MAP_SIZE * 2;
         int centerX = screenWidth - 10 - MAP_SIZE;
@@ -68,18 +66,18 @@ public class MinimapOverlay implements LayeredDraw.Layer {
                             for (int z = 0; z < 16; z++) {
                                 int worldX = (cx << 4) + x;
                                 int worldZ = (cz << 4) + z;
-                                
+
                                 int screenX = worldX - playerX + MAP_SIZE;
                                 int screenZ = worldZ - playerZ + MAP_SIZE;
-                                
-                                if (screenX >= 0 && screenX < MAP_SIZE * 2 && screenZ >= 0 && screenZ < MAP_SIZE * 2) {
-                                    int colorCol = chunkData[x + (z * 16)];
-                                    if (colorCol != 0) {
-                                        int rgb = colorCol; // Standard RGB
-                                        int r = (rgb >> 16) & 0xFF;
-                                        int g = (rgb >> 8) & 0xFF;
-                                        int b = rgb & 0xFF;
-                                        int colorABGR = 0xFF000000 | (b << 16) | (g << 8) | r;
+
+                                if (screenX >= 0 && screenX < MAP_SIZE * 2 && screenZ >= 0 && screenZ < MAP_SIZE * 2) {        
+                                    int argb = chunkData[x + (z * 16)];
+                                    if (argb != 0) {
+                                        int a = (argb >> 24) & 0xFF;
+                                        int r = (argb >> 16) & 0xFF;
+                                        int g = (argb >> 8) & 0xFF;
+                                        int b = argb & 0xFF;
+                                        int colorABGR = (a << 24) | (b << 16) | (g << 8) | r;
                                         image.setPixelRGBA(screenX, screenZ, colorABGR);
                                     }
                                 }
@@ -94,17 +92,20 @@ public class MinimapOverlay implements LayeredDraw.Layer {
         // Draw Map border
         guiGraphics.fill(centerX - MAP_SIZE - 2, centerY - MAP_SIZE - 2, centerX + MAP_SIZE + 2, centerY - MAP_SIZE, 0xFF000000);
         guiGraphics.fill(centerX - MAP_SIZE - 2, centerY + MAP_SIZE, centerX + MAP_SIZE + 2, centerY + MAP_SIZE + 2, 0xFF000000);
-        guiGraphics.fill(centerX - MAP_SIZE - 2, centerY - MAP_SIZE, centerX - MAP_SIZE, centerY + MAP_SIZE, 0xFF000000);
-        guiGraphics.fill(centerX + MAP_SIZE, centerY - MAP_SIZE, centerX + MAP_SIZE + 2, centerY + MAP_SIZE, 0xFF000000);
-        
+        guiGraphics.fill(centerX - MAP_SIZE - 2, centerY - MAP_SIZE, centerX - MAP_SIZE, centerY + MAP_SIZE, 0xFF000000);      
+        guiGraphics.fill(centerX + MAP_SIZE, centerY - MAP_SIZE, centerX + MAP_SIZE + 2, centerY + MAP_SIZE, 0xFF000000);      
+
         guiGraphics.blit(minimapTextureLocation, centerX - MAP_SIZE, centerY - MAP_SIZE, 0, 0, mapDiameter, mapDiameter, mapDiameter, mapDiameter);
-        
+
+        String currentDim = mc.level.dimension().location().toString();
+
         // Draw waypoints
         for (Waypoint wp : MapStorage.waypoints) {
+            if (!currentDim.equals(wp.dimension)) continue;
             float dx = wp.x - playerX;
             float dz = wp.z - playerZ;
             if (Math.abs(dx) < MAP_SIZE && Math.abs(dz) < MAP_SIZE) {
-                guiGraphics.fill(centerX + (int)dx - 1, centerY + (int)dz - 1, 
+                guiGraphics.fill(centerX + (int)dx - 1, centerY + (int)dz - 1,
                                  centerX + (int)dx + 2, centerY + (int)dz + 2, wp.color);
             }
         }
@@ -113,14 +114,14 @@ public class MinimapOverlay implements LayeredDraw.Layer {
         PoseStack pose = guiGraphics.pose();
         pose.pushPose();
         pose.translate(centerX, centerY, 0);
-        pose.mulPose(Axis.ZP.rotationDegrees(player.getYRot() - 180f)); 
-        
+        pose.mulPose(Axis.ZP.rotationDegrees(player.getYRot() - 180f));
+
         int arrowColor = 0xFF00FFFF; // Cyan arrow to contrast well with map
-        guiGraphics.fill(-1, -4, 2, -3, arrowColor); 
-        guiGraphics.fill(-2, -3, 3, -2, arrowColor); 
-        guiGraphics.fill(-3, -2, 4, -1, arrowColor); 
-        guiGraphics.fill(-1, -1, 2, 3, arrowColor);  
-        
+        guiGraphics.fill(-1, -4, 2, -3, arrowColor);
+        guiGraphics.fill(-2, -3, 3, -2, arrowColor);
+        guiGraphics.fill(-3, -2, 4, -1, arrowColor);
+        guiGraphics.fill(-1, -1, 2, 3, arrowColor);
+
         pose.popPose();
     }
 }
