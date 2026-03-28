@@ -55,10 +55,18 @@ public class MapStorage {
         // Save map data
         File mapDataFile = dir.resolve("mapdata.json").toFile();
         try (FileWriter writer = new FileWriter(mapDataFile)) {
-            // Convert byte arrays to base64 for easy JSON storage
+            // Convert int arrays to base64 for easy JSON storage
             Map<Long, String> encodedMap = new HashMap<>();
-            for (Map.Entry<Long, byte[]> entry : MapDataManager.chunkData.entrySet()) {
-                encodedMap.put(entry.getKey(), Base64.getEncoder().encodeToString(entry.getValue()));
+            for (Map.Entry<Long, int[]> entry : MapDataManager.chunkData.entrySet()) {
+                int[] ints = entry.getValue();
+                byte[] bytes = new byte[ints.length * 4];
+                for (int i = 0; i < ints.length; i++) {
+                    bytes[i * 4] = (byte) (ints[i] >> 24);
+                    bytes[i * 4 + 1] = (byte) (ints[i] >> 16);
+                    bytes[i * 4 + 2] = (byte) (ints[i] >> 8);
+                    bytes[i * 4 + 3] = (byte) (ints[i]);
+                }
+                encodedMap.put(entry.getKey(), Base64.getEncoder().encodeToString(bytes));
             }
             GSON.toJson(encodedMap, writer);
         } catch (IOException e) {
@@ -92,8 +100,16 @@ public class MapStorage {
                 Map<Long, String> encodedMap = GSON.fromJson(reader, mapType);
                 if (encodedMap != null) {
                     for (Map.Entry<Long, String> entry : encodedMap.entrySet()) {
-                        byte[] data = Base64.getDecoder().decode(entry.getValue());
-                        MapDataManager.chunkData.put(entry.getKey(), data);
+                        byte[] bytes = Base64.getDecoder().decode(entry.getValue());
+                        if (bytes.length != 1024) continue; // Ignore old format data (256 bytes) to prevent crashes
+                        int[] ints = new int[bytes.length / 4];
+                        for (int i = 0; i < ints.length; i++) {
+                            ints[i] = ((bytes[i * 4] & 0xFF) << 24) |
+                                      ((bytes[i * 4 + 1] & 0xFF) << 16) |
+                                      ((bytes[i * 4 + 2] & 0xFF) << 8) |
+                                      (bytes[i * 4 + 3] & 0xFF);
+                        }
+                        MapDataManager.chunkData.put(entry.getKey(), ints);
                     }
                 }
             } catch (IOException e) {

@@ -14,18 +14,18 @@ import java.util.Map;
 public class MapDataManager {
     // Map of chunk coordinates to a 16x16 array of map colors.
     // Encoded as: map.get(chunkZ).get(chunkX)[x][z] = color;
-    public static final Map<Long, byte[]> chunkData = new HashMap<>();
+    public static final Map<Long, int[]> chunkData = new HashMap<>();
 
     public static void clear() {
         chunkData.clear();
     }
 
-    public static byte[] getOrGenerateChunkData(Level level, int chunkX, int chunkZ) {
+    public static int[] getOrGenerateChunkData(Level level, int chunkX, int chunkZ) {
         long key = ((long) chunkX << 32) | (chunkZ & 0xFFFFFFFFL);
         return chunkData.computeIfAbsent(key, k -> generateChunkData(level, chunkX, chunkZ));
     }
 
-    public static byte[] getChunkData(int chunkX, int chunkZ) {
+    public static int[] getChunkData(int chunkX, int chunkZ) {
         long key = ((long) chunkX << 32) | (chunkZ & 0xFFFFFFFFL);
         return chunkData.get(key);
     }
@@ -35,8 +35,8 @@ public class MapDataManager {
         chunkData.put(key, generateChunkData(level, chunkX, chunkZ));
     }
 
-    private static byte[] generateChunkData(Level level, int chunkX, int chunkZ) {
-        byte[] data = new byte[256];
+    private static int[] generateChunkData(Level level, int chunkX, int chunkZ) {
+        int[] data = new int[256];
         LevelChunk chunk = level.getChunkSource().getChunk(chunkX, chunkZ, false);
         if (chunk == null) {
             return null; // Return null if chunk not loaded
@@ -60,8 +60,7 @@ public class MapDataManager {
                 }
                 
                 MapColor color = state.getMapColor(level, mutablePos);
-                int packedId = color.getPackedId(MapColor.Brightness.NORMAL);
-                data[x + (z * 16)] = (byte) packedId;
+                data[x + (z * 16)] = color.col;
             }
         }
         return data;

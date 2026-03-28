@@ -2,6 +2,7 @@ package io.github.icyyoung.tutorialmod.client.minimap;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -59,20 +60,20 @@ public class FullScreenMapScreen extends Screen {
 
         for (int chunkX = minChunkX; chunkX <= maxChunkX; chunkX++) {
             for (int chunkZ = minChunkZ; chunkZ <= maxChunkZ; chunkZ++) {
-                byte[] data = MapDataManager.getChunkData(chunkX, chunkZ);
+                int[] data = MapDataManager.getChunkData(chunkX, chunkZ);
                 if (data != null) {
                     for (int x = 0; x < 16; x++) {
                         for (int z = 0; z < 16; z++) {
-                            byte packed = data[x + (z * 16)];
-                            if (packed != 0) {
+                            int colorCol = data[x + (z * 16)];
+                            if (colorCol != 0) {
                                 int worldX = (chunkX << 4) + x;
                                 int worldZ = (chunkZ << 4) + z;
                                 
                                 int screenX = (int) (centerX + (worldX - offsetX) * zoom);
                                 int screenY = (int) (centerY + (worldZ - offsetZ) * zoom);
                                 
-                                int argb = MapColor.getColorFromPackedId(packed & 0xFF);
-                                guiGraphics.fill(screenX, screenY, (int)(screenX + Math.ceil(zoom)), (int)(screenY + Math.ceil(zoom)), argb | 0xFF000000);
+                                int argb = 0xFF000000 | colorCol;
+                                guiGraphics.fill(screenX, screenY, (int)(screenX + Math.ceil(zoom)), (int)(screenY + Math.ceil(zoom)), argb);
                             }
                         }
                     }
@@ -93,7 +94,19 @@ public class FullScreenMapScreen extends Screen {
         if (mc.player != null) {
             int px = (int) (centerX + (mc.player.getX() - offsetX) * zoom);
             int py = (int) (centerY + (mc.player.getZ() - offsetZ) * zoom);
-            guiGraphics.fill(px - 2, py - 2, px + 2, py + 2, 0xFFFF0000);
+            
+            PoseStack poseStack = guiGraphics.pose();
+            poseStack.pushPose();
+            poseStack.translate(px, py, 0);
+            poseStack.mulPose(Axis.ZP.rotationDegrees(mc.player.getYRot() - 180f)); 
+            
+            int arrowColor = 0xFF00FFFF; 
+            guiGraphics.fill(-1, -4, 2, -3, arrowColor); 
+            guiGraphics.fill(-2, -3, 3, -2, arrowColor); 
+            guiGraphics.fill(-3, -2, 4, -1, arrowColor); 
+            guiGraphics.fill(-1, -1, 2, 3, arrowColor);  
+            
+            poseStack.popPose();
         }
         
         pose.popPose();
