@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
 
 import io.github.icyyoung.tutorialmod.client.minimap.FullScreenMapScreen;
 import io.github.icyyoung.tutorialmod.client.minimap.MinimapOverlay;
+import io.github.icyyoung.tutorialmod.client.music.MusicManager;
 import io.github.icyyoung.tutorialmod.client.keymapping.ModKeyBindings;
 import io.github.icyyoung.tutorialmod.client.screen.MusicPlayerScreen;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
@@ -184,5 +185,6 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void onPlayerLeave(ClientPlayerNetworkEvent.LoggingOut event) {
         MapStorage.save();
+        MusicManager.getInstance().stop();
     }
 }

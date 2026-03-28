@@ -140,6 +140,10 @@ public class TutorialMod
                 ResourceLocation.fromNamespaceAndPath(MOD_ID, "minimap"),
                 new MinimapOverlay()
             );
+            event.registerAboveAll(
+                ResourceLocation.fromNamespaceAndPath(MOD_ID, "music_overlay"),
+                new io.github.icyyoung.tutorialmod.client.music.MusicOverlay()
+            );
         }
 
         @SubscribeEvent
