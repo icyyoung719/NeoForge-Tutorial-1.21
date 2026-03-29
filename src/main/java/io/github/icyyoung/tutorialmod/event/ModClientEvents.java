@@ -64,7 +64,7 @@ public class ModClientEvents {
         Button sortButton = Button.builder(Component.translatable("button.tutorialmod.sort_chest"),
                         button -> PacketDistributor.sendToServer(new SortChestPayload(chestMenu.containerId)))
                 .bounds(buttonX, buttonY, 16, 16)
-                .tooltip(Tooltip.create(Component.translatable("tooltip.tutorialmod.sort_chest")))
+                .tooltip(Tooltip.create(Component.translatable("tooltip.tutorialmod.sort_chest.tooltip")))
                 .build();
         event.addListener(sortButton);
     }

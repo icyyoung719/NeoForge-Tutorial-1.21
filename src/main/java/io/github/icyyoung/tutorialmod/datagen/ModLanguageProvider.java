@@ -37,10 +37,14 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.TOMAHAWK.get(), "Tomahawk");
         add(ModItems.RADIATION_STAFF.get(), "Radiation Staff");
         add(ModItems.SAPPHIRE_BOW.get(), "Sapphire Bow");
-        add(ModItems.HOUSE_BUILDER.get(), "House Builder");
+        add(ModItems.SCHEMATIC_HOUSE_BUILDER.get(), "Schematic House Builder");
+        add(ModItems.VILLAGER_HOUSE_BUILDER.get(), "Villager House Builder");
         //sound disks
         add(ModItems.BAR_BRAWL_MUSIC_DISC.get(), "Bar Brawl Music Disk");
-        add("item.tutorialmod.bar_brawl_music_disc.desc","Bryan Tech - Bar Brawl (CC0)");
+        add("item.tutorialmod.bar_brawl_music_disc.desc", "Bryan Tech - Bar Brawl (CC0)");
+
+        // Buttons
+        add("button.tutorialmod.sort_chest", "Sort");
 
         //potion and effect items
         add("effect.minecraft.slimey", "Slimey");
@@ -100,16 +104,25 @@ public class ModLanguageProvider extends LanguageProvider {
 //        add(ModCreativeModeTabs.CREATIVE_MOD_TAB.getRegistryName().toLanguageKey(),"Creative Mod Tab");
         //tooltips
         add("tooltip.tutorialmod.metal_detector.tooltip", "Detects Valuables Underground!");
-        add("tooltip.tutorialmod.sound_block.tooltip","Plays sweet sounds when right clicked!");
-        add("tooltip.tutorialmod.house_builder.tooltip", "Right-click a block to deploy a small wooden house.");
-        add("tooltip.tutorialmod.house_builder.mode", "Current blueprint: %s");
-        add("tooltip.tutorialmod.house_builder.mode.normal", "Wooden House");
-        add("tooltip.tutorialmod.house_builder.mode.villager", "Villager House");
-        add("tooltip.tutorialmod.house_builder.switch", "Sneak + right-click to switch blueprint.");
-        add("tooltip.tutorialmod.house_builder.tooltip_blocked", "Placement fails if the build area is blocked.");
-        add("message.tutorialmod.house_builder.blocked", "Cannot place house: area is blocked.");
-        add("message.tutorialmod.house_builder.success", "%s deployed.");
-        add("message.tutorialmod.house_builder.mode_switched", "Blueprint switched to: %s");
+        add("tooltip.tutorialmod.sound_block.tooltip", "Plays sweet sounds when right clicked!");
+        add("tooltip.tutorialmod.sort_chest.tooltip", "Automatically sorts items in the chest!");
+        add("tooltip.tutorialmod.schematic_builder.tooltip", "Right-click to build from schematic files in run/tutorialmod/house_builder.");
+        add("tooltip.tutorialmod.schematic_builder.switch", "Sneak + right-click to switch schematic file.");
+        add("tooltip.tutorialmod.schematic_builder.tooltip_blocked", "Placement fails if the build area is blocked.");
+        add("tooltip.tutorialmod.schematic_builder.default_name", "Default Schematic");
+        add("message.tutorialmod.schematic_builder.no_schematic", "No valid .schem found and default schematic is unavailable.");
+        add("message.tutorialmod.schematic_builder.blocked", "Cannot place schematic: area is blocked.");
+        add("message.tutorialmod.schematic_builder.success", "Schematic deployed: %s");
+        add("message.tutorialmod.schematic_builder.mode_switched", "Schematic switched to: %s");
+        add("message.tutorialmod.schematic_builder.using_default", "No runtime schematic found, using bundled default.");
+
+        add("tooltip.tutorialmod.villager_builder.tooltip", "Right-click to place a villager house template.");
+        add("tooltip.tutorialmod.villager_builder.switch", "Sneak + right-click to switch village template.");
+        add("tooltip.tutorialmod.villager_builder.tooltip_blocked", "Placement fails if the template cannot be placed.");
+        add("message.tutorialmod.villager_builder.no_template", "No villager template is available.");
+        add("message.tutorialmod.villager_builder.blocked", "Cannot place villager template here.");
+        add("message.tutorialmod.villager_builder.success", "Villager template deployed: %s");
+        add("message.tutorialmod.villager_builder.mode_switched", "Villager template switched to: %s");
         //paintings
         add(getPaintingTitleKey("world"), "World");
         add(getPaintingAuthorKey("world"), "NanoAttack");
