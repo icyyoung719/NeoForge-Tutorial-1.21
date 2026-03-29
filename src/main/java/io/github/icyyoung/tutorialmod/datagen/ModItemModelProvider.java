@@ -39,6 +39,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PINE_CONE.get());
         basicItem(ModItems.SCHEMATIC_HOUSE_BUILDER.get());
         basicItem(ModItems.VILLAGER_HOUSE_BUILDER.get());
+        basicItem(ModItems.PICTURE_BUILDER.get());
         //sound disks
         basicItem(ModItems.BAR_BRAWL_MUSIC_DISC.get());
         //crop seeds

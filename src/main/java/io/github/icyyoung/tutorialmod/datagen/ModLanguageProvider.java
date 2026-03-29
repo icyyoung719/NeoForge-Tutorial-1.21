@@ -39,6 +39,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModItems.SAPPHIRE_BOW.get(), "Sapphire Bow");
         add(ModItems.SCHEMATIC_HOUSE_BUILDER.get(), "Schematic House Builder");
         add(ModItems.VILLAGER_HOUSE_BUILDER.get(), "Villager House Builder");
+        add(ModItems.PICTURE_BUILDER.get(), "Picture Builder");
         //sound disks
         add(ModItems.BAR_BRAWL_MUSIC_DISC.get(), "Bar Brawl Music Disk");
         add("item.tutorialmod.bar_brawl_music_disc.desc", "Bryan Tech - Bar Brawl (CC0)");
@@ -123,6 +124,13 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.tutorialmod.villager_builder.blocked", "Cannot place villager template here.");
         add("message.tutorialmod.villager_builder.success", "Villager template deployed: %s");
         add("message.tutorialmod.villager_builder.mode_switched", "Villager template switched to: %s");
+
+        add("tooltip.tutorialmod.picture_builder.tooltip", "Right-click to build pixel art from images in run/tutorialmod/picture_builder.");
+        add("tooltip.tutorialmod.picture_builder.switch", "Sneak + right-click to switch image file.");
+        add("tooltip.tutorialmod.picture_builder.tooltip_clear", "Placement clears the target wall area before building.");
+        add("message.tutorialmod.picture_builder.no_image", "No valid PNG/JPG image was found in run/tutorialmod/picture_builder.");
+        add("message.tutorialmod.picture_builder.success", "Picture deployed: %s");
+        add("message.tutorialmod.picture_builder.mode_switched", "Picture switched to: %s");
         //paintings
         add(getPaintingTitleKey("world"), "World");
         add(getPaintingAuthorKey("world"), "NanoAttack");

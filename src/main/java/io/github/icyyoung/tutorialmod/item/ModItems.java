@@ -85,6 +85,8 @@ public class ModItems {
             () -> new SchematicHouseBuilderItem(new Item.Properties().stacksTo(16)));
     public static final DeferredItem<Item> VILLAGER_HOUSE_BUILDER = ITEMS.register("villager_house_builder",
             () -> new VillagerHouseBuilderItem(new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> PICTURE_BUILDER = ITEMS.register("picture_builder",
+            () -> new PictureBuilderItem(new Item.Properties().stacksTo(16)));
     //seeds
     public static final DeferredItem<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds",
             () -> new ItemNameBlockItem(ModBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));

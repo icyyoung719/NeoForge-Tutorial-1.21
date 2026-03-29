@@ -76,6 +76,16 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('D', Items.OAK_DOOR)
                 .unlockedBy(getHasName(Items.OAK_DOOR), has(Items.OAK_DOOR))
                 .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.PICTURE_BUILDER.get())
+                .pattern("GGG")
+                .pattern("PCP")
+                .pattern("LLL")
+                .define('G', Items.GLASS_PANE)
+                .define('P', Items.PAPER)
+                .define('C', Items.CRAFTING_TABLE)
+                .define('L', Items.OAK_PLANKS)
+                .unlockedBy(getHasName(Items.PAPER), has(Items.PAPER))
+                .save(output);
 
 
 

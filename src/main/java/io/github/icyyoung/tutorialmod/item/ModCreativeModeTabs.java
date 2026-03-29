@@ -55,6 +55,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SAPPHIRE_BOW);
                         output.accept(ModItems.SCHEMATIC_HOUSE_BUILDER.get());
                         output.accept(ModItems.VILLAGER_HOUSE_BUILDER.get());
+                        output.accept(ModItems.PICTURE_BUILDER.get());
                     }).build());
 
     public static final Supplier<CreativeModeTab> BISMUTH_BLOCK_TAB = CREATIVE_MOD_TAB.register("bismuth_block_tab",
