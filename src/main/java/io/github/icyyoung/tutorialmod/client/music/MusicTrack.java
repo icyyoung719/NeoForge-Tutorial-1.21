@@ -11,6 +11,7 @@ public class MusicTrack {
     private final String title;
     private final String artist;
     private final String album;
+    private final int durationSeconds;
     private final byte[] coverArt;
 
     public MusicTrack(File file) {
@@ -19,10 +20,12 @@ public class MusicTrack {
         String resolvedTitle = stripMp3Extension(fileName);
         String resolvedArtist = "Unknown Artist";
         String resolvedAlbum = "Unknown Album";
+        int resolvedDurationSeconds = 0;
         byte[] resolvedCoverArt = null;
         
         try {
             Mp3File mp3file = new Mp3File(file.getAbsolutePath());
+            resolvedDurationSeconds = (int) Math.max(0, mp3file.getLengthInSeconds());
             if (mp3file.hasId3v2Tag()) {
                 ID3v2 id3v2Tag = mp3file.getId3v2Tag();
                 resolvedTitle = pickFirstNonBlank(
@@ -48,6 +51,7 @@ public class MusicTrack {
         this.title = sanitizeTagValue(resolvedTitle, stripMp3Extension(fileName));
         this.artist = sanitizeTagValue(resolvedArtist, "Unknown Artist");
         this.album = sanitizeTagValue(resolvedAlbum, "Unknown Album");
+        this.durationSeconds = resolvedDurationSeconds;
         this.coverArt = resolvedCoverArt;
     }
 
@@ -84,5 +88,6 @@ public class MusicTrack {
     public String getTitle() { return title; }
     public String getArtist() { return artist; }
     public String getAlbum() { return album; }
+    public int getDurationSeconds() { return durationSeconds; }
     public byte[] getCoverArt() { return coverArt; }
 }
