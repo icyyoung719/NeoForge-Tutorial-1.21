@@ -21,8 +21,13 @@ public class MusicOverlay implements LayeredDraw.Layer {
 
     @Override
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-        MusicTrack track = MusicManager.getInstance().getCurrentTrack();
-        if (track != null && MusicManager.getInstance().isPlaying()) {
+        MusicManager manager = MusicManager.getInstance();
+        if (!manager.isNowPlayingOverlayEnabled()) {
+            return;
+        }
+
+        MusicTrack track = manager.getCurrentTrack();
+        if (track != null && manager.isPlaying()) {
             int windowHeight = Minecraft.getInstance().getWindow().getGuiScaledHeight();
             
             int boxWidth = 186;

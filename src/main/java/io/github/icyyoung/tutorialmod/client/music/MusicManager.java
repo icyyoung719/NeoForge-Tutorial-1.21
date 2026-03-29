@@ -36,12 +36,13 @@ public class MusicManager {
     private final Deque<MusicTrack> shuffleHistory = new ArrayDeque<>();
     private MusicTrack currentTrack;
     private long playbackStartMs;
-    private int pausedElapsedSeconds;
+    private long pausedElapsedMs;
     
     private boolean isLooping = false;
     private boolean isShuffle = false;
     private boolean isPlaying = false;
     private boolean isPaused = false;
+    private boolean showNowPlayingOverlay = true;
     
     private MusicManager() {
         loadTracks();
@@ -55,12 +56,16 @@ public class MusicManager {
     }
     
     public synchronized void loadTracks() {
-        stop();
+        String currentFileName = currentTrack != null ? currentTrack.getFileName() : null;
+        boolean wasPlaying = isPlaying;
+        boolean wasPaused = isPaused;
+        long resumeElapsedMs = getCurrentElapsedMillis();
+
+        stopPlaybackOnly();
         playlist.clear();
         orderedReference.clear();
         shuffleQueue.clear();
         shuffleHistory.clear();
-        currentTrack = null;
 
         File musicDir = new File(Minecraft.getInstance().gameDirectory, "tutorialmod/music");
         if (!musicDir.exists()) {
@@ -73,6 +78,35 @@ public class MusicManager {
                 playlist.add(track);
                 orderedReference.add(track);
             }
+        }
+
+        MusicTrack matchedTrack = null;
+        if (currentFileName != null) {
+            for (MusicTrack track : playlist) {
+                if (currentFileName.equals(track.getFileName())) {
+                    matchedTrack = track;
+                    break;
+                }
+            }
+        }
+
+        if (matchedTrack != null) {
+            currentTrack = matchedTrack;
+            long safeResumeMs = clampResumeMs(matchedTrack, resumeElapsedMs);
+            if (wasPlaying) {
+                playTrackInternal(matchedTrack, safeResumeMs);
+            } else {
+                isPaused = wasPaused;
+                pausedElapsedMs = wasPaused ? safeResumeMs : 0L;
+                isPlaying = false;
+                playbackStartMs = 0L;
+            }
+        } else {
+            currentTrack = null;
+            isPlaying = false;
+            isPaused = false;
+            pausedElapsedMs = 0L;
+            playbackStartMs = 0L;
         }
 
         if (isShuffle) {
@@ -91,25 +125,25 @@ public class MusicManager {
             shuffleHistory.clear();
             rebuildShuffleQueue(selected);
         }
-        pausedElapsedSeconds = 0;
+        pausedElapsedMs = 0L;
         isPaused = false;
-        playTrackInternal(selected, 0);
+        playTrackInternal(selected, 0L);
     }
 
-    private synchronized void playTrackInternal(MusicTrack track, int startSeconds) {
+    private synchronized void playTrackInternal(MusicTrack track, long startMs) {
         stopPlaybackOnly();
         Minecraft.getInstance().getMusicManager().stopPlaying();
         this.currentTrack = track;
         this.isPlaying = true;
         this.isPaused = false;
-        int safeStartSeconds = Math.max(0, startSeconds);
-        this.pausedElapsedSeconds = safeStartSeconds;
-        this.playbackStartMs = System.currentTimeMillis() - safeStartSeconds * 1000L;
+        long safeStartMs = clampResumeMs(track, Math.max(0L, startMs));
+        this.pausedElapsedMs = safeStartMs;
+        this.playbackStartMs = System.currentTimeMillis() - safeStartMs;
         
         playerThread = new Thread(() -> {
             try (FileInputStream fis = new FileInputStream(track.getFile())) {
-                if (safeStartSeconds > 0) {
-                    long skipBytes = estimateSkipBytes(track, safeStartSeconds);
+                if (safeStartMs > 0L) {
+                    long skipBytes = estimateSkipBytes(track, safeStartMs);
                     skipFully(fis, skipBytes);
                 }
 
@@ -153,8 +187,8 @@ public class MusicManager {
 
         if (isLooping) {
             if (currentTrack != null) {
-                pausedElapsedSeconds = 0;
-                playTrackInternal(currentTrack, 0);
+                pausedElapsedMs = 0L;
+                playTrackInternal(currentTrack, 0L);
             }
         } else {
             playNext();
@@ -164,7 +198,8 @@ public class MusicManager {
     public synchronized void stop() {
         stopPlaybackOnly();
         isPaused = false;
-        pausedElapsedSeconds = 0;
+        pausedElapsedMs = 0L;
+        currentTrack = null;
     }
 
     private synchronized void stopPlaybackOnly() {
@@ -186,7 +221,7 @@ public class MusicManager {
             return;
         }
 
-        pausedElapsedSeconds = getCurrentElapsedSeconds();
+        pausedElapsedMs = getCurrentElapsedMillis();
         isPaused = true;
         stopPlaybackOnly();
     }
@@ -196,7 +231,7 @@ public class MusicManager {
             return;
         }
 
-        playTrackInternal(currentTrack, pausedElapsedSeconds);
+        playTrackInternal(currentTrack, pausedElapsedMs);
     }
 
     public synchronized void togglePlayPause() {
@@ -205,7 +240,7 @@ public class MusicManager {
         } else if (isPaused) {
             resume();
         } else if (currentTrack != null) {
-            playTrackInternal(currentTrack, 0);
+            playTrackInternal(currentTrack, 0L);
         } else if (!playlist.isEmpty()) {
             playTrack(0);
         }
@@ -228,9 +263,9 @@ public class MusicManager {
                 nextTrack = playlist.get(0);
             }
             if (nextTrack != null) {
-                pausedElapsedSeconds = 0;
+                pausedElapsedMs = 0L;
                 isPaused = false;
-                playTrackInternal(nextTrack, 0);
+                playTrackInternal(nextTrack, 0L);
             }
         } else {
             int nextIndex;
@@ -240,9 +275,9 @@ public class MusicManager {
             } else {
                 nextIndex = (currentIndex + 1) % playlist.size();
             }
-            pausedElapsedSeconds = 0;
+            pausedElapsedMs = 0L;
             isPaused = false;
-            playTrackInternal(playlist.get(nextIndex), 0);
+            playTrackInternal(playlist.get(nextIndex), 0L);
         }
     }
     
@@ -255,13 +290,13 @@ public class MusicManager {
                 if (currentTrack != null) {
                     shuffleQueue.addFirst(currentTrack);
                 }
-                pausedElapsedSeconds = 0;
+                pausedElapsedMs = 0L;
                 isPaused = false;
-                playTrackInternal(prevTrack, 0);
+                playTrackInternal(prevTrack, 0L);
             } else if (currentTrack == null) {
-                pausedElapsedSeconds = 0;
+                pausedElapsedMs = 0L;
                 isPaused = false;
-                playTrackInternal(playlist.get(playlist.size() - 1), 0);
+                playTrackInternal(playlist.get(playlist.size() - 1), 0L);
             }
         } else {
             int currentIndex = playlist.indexOf(currentTrack);
@@ -274,9 +309,9 @@ public class MusicManager {
                     prevIndex = playlist.size() - 1;
                 }
             }
-            pausedElapsedSeconds = 0;
+            pausedElapsedMs = 0L;
             isPaused = false;
-            playTrackInternal(playlist.get(prevIndex), 0);
+            playTrackInternal(playlist.get(prevIndex), 0L);
         }
     }
     
@@ -332,20 +367,35 @@ public class MusicManager {
     
     public boolean isPlaying() { return isPlaying; }
     public boolean isPaused() { return isPaused; }
+    public boolean isNowPlayingOverlayEnabled() { return showNowPlayingOverlay; }
+    public void setNowPlayingOverlayEnabled(boolean enabled) { this.showNowPlayingOverlay = enabled; }
+    public void toggleNowPlayingOverlay() { this.showNowPlayingOverlay = !this.showNowPlayingOverlay; }
 
     public synchronized int getCurrentElapsedSeconds() {
-        if (isPaused && currentTrack != null) {
-            return pausedElapsedSeconds;
+        int elapsed = (int) (getCurrentElapsedMillis() / 1000L);
+        if (currentTrack == null) {
+            return elapsed;
         }
-
-        if (currentTrack == null || playbackStartMs <= 0L) {
-            return 0;
-        }
-
-        int elapsed = (int) Math.max(0L, (System.currentTimeMillis() - playbackStartMs) / 1000L);
         int duration = currentTrack.getDurationSeconds();
         if (duration > 0) {
             return Math.min(elapsed, duration);
+        }
+        return elapsed;
+    }
+
+    private synchronized long getCurrentElapsedMillis() {
+        if (isPaused && currentTrack != null) {
+            return pausedElapsedMs;
+        }
+
+        if (currentTrack == null || playbackStartMs <= 0L) {
+            return 0L;
+        }
+
+        long elapsed = Math.max(0L, System.currentTimeMillis() - playbackStartMs);
+        long maxDurationMs = Math.max(0L, currentTrack.getDurationSeconds() * 1000L);
+        if (maxDurationMs > 0L) {
+            return Math.min(elapsed, maxDurationMs);
         }
         return elapsed;
     }
@@ -407,9 +457,9 @@ public class MusicManager {
         return isPlaying && Thread.currentThread() == playerThread;
     }
 
-    private long estimateSkipBytes(MusicTrack track, int startSeconds) {
-        int durationSeconds = track.getDurationSeconds();
-        if (durationSeconds <= 0) {
+    private long estimateSkipBytes(MusicTrack track, long startMs) {
+        long durationMs = Math.max(0L, track.getDurationSeconds() * 1000L);
+        if (durationMs <= 0L) {
             return 0L;
         }
 
@@ -418,8 +468,16 @@ public class MusicManager {
             return 0L;
         }
 
-        long cappedStart = Math.min(startSeconds, durationSeconds - 1L);
-        return (fileLength * cappedStart) / durationSeconds;
+        long cappedStartMs = Math.min(startMs, durationMs - 1L);
+        return (fileLength * cappedStartMs) / durationMs;
+    }
+
+    private long clampResumeMs(MusicTrack track, long requestedMs) {
+        long durationMs = Math.max(0L, track.getDurationSeconds() * 1000L);
+        if (durationMs <= 1L) {
+            return Math.max(0L, requestedMs);
+        }
+        return Math.max(0L, Math.min(requestedMs, durationMs - 1L));
     }
 
     private void skipFully(FileInputStream stream, long bytesToSkip) throws IOException {

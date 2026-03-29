@@ -35,8 +35,10 @@ public class MusicPlayerScreen extends Screen {
     private Button shuffleBtn;
     private Button playPauseBtn;
     private Button repeatBtn;
+    private Button overlayBtn;
     private float volumeSliderValue;
     private boolean isDraggingVolume = false;
+    private int observedTrackIndex = -2;
 
     private record UiLayout(
         int panelX,
@@ -69,10 +71,27 @@ public class MusicPlayerScreen extends Screen {
     @Override
     protected void init() {
         super.init();
+        if (observedTrackIndex == -2) {
+            syncPageToCurrentTrack(false);
+        }
+
         UiLayout l = buildLayout();
 
         List<MusicTrack> playlist = MusicManager.getInstance().getPlaylist();
         int maxPage = Math.max(0, (playlist.size() - 1) / ITEMS_PER_PAGE);
+        currentPage = Mth.clamp(currentPage, 0, maxPage);
+
+        this.addRenderableWidget(Button.builder(actionLabel("Refresh", ChatFormatting.YELLOW), b -> {
+            MusicManager.getInstance().loadTracks();
+            observedTrackIndex = MusicManager.getInstance().getCurrentTrackIndex();
+            syncPageToCurrentTrack(false);
+            this.rebuildWidgets();
+        }).bounds(l.panelX + 8, l.panelY + 6, 58, 20).build());
+
+        overlayBtn = this.addRenderableWidget(Button.builder(overlayLabel(), b -> {
+            MusicManager.getInstance().toggleNowPlayingOverlay();
+            refreshControlStates();
+        }).bounds(l.panelX + 70, l.panelY + 6, 92, 20).build());
 
         if (maxPage > 0) {
             this.addRenderableWidget(Button.builder(Component.literal("<"), b -> {
@@ -144,6 +163,17 @@ public class MusicPlayerScreen extends Screen {
         }
 
         refreshControlStates();
+        observedTrackIndex = MusicManager.getInstance().getCurrentTrackIndex();
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        int currentTrackIndex = MusicManager.getInstance().getCurrentTrackIndex();
+        if (currentTrackIndex != observedTrackIndex) {
+            observedTrackIndex = currentTrackIndex;
+            syncPageToCurrentTrack(true);
+        }
     }
 
     @Override
@@ -164,12 +194,12 @@ public class MusicPlayerScreen extends Screen {
         guiGraphics.pose().pushPose();
         guiGraphics.pose().translate(0.0F, 0.0F, 200.0F);
 
-        guiGraphics.drawCenteredString(font, Component.literal("BGM 管理器"), l.panelX + l.panelWidth / 2, l.panelY + 10, 0xFFD36B);
+        guiGraphics.drawCenteredString(font, Component.literal("BGM Manager"), l.panelX + l.panelWidth / 2, l.panelY + 10, 0xFFD36B);
 
-        guiGraphics.drawString(font, "封面", l.panelX + 12, l.headerY, 0xD0D0D0, false);
-        guiGraphics.drawString(font, "歌曲名称", l.titleColX, l.headerY, 0xD0D0D0, false);
-        guiGraphics.drawString(font, "歌手", l.artistColX, l.headerY, 0xD0D0D0, false);
-        guiGraphics.drawString(font, "时长", l.durationColX, l.headerY, 0xD0D0D0, false);
+        guiGraphics.drawString(font, "Cover", l.panelX + 12, l.headerY, 0xD0D0D0, false);
+        guiGraphics.drawString(font, "Title", l.titleColX, l.headerY, 0xD0D0D0, false);
+        guiGraphics.drawString(font, "Artist", l.artistColX, l.headerY, 0xD0D0D0, false);
+        guiGraphics.drawString(font, "Length", l.durationColX, l.headerY, 0xD0D0D0, false);
 
         List<MusicTrack> playlist = MusicManager.getInstance().getPlaylist();
         int startIndex = currentPage * ITEMS_PER_PAGE;
@@ -196,7 +226,7 @@ public class MusicPlayerScreen extends Screen {
         }
 
         MusicTrack currentTrack = MusicManager.getInstance().getCurrentTrack();
-        String nowPlayingText = "当前播放：";
+        String nowPlayingText = "Now Playing: ";
         if (currentTrack != null) {
             nowPlayingText += clipToWidth(currentTrack.getTitle(), Math.max(100, l.panelWidth / 3)) + " - "
                 + clipToWidth(currentTrack.getArtist(), Math.max(90, l.panelWidth / 4));
@@ -214,7 +244,7 @@ public class MusicPlayerScreen extends Screen {
         drawBar(guiGraphics, l.progressBarX, l.progressY + 4, l.progressBarWidth, 6, progress, 0xFF4EA7FF, 0xFF2A2A2A);
         guiGraphics.drawString(font, "[" + formatSeconds(total) + "]", l.progressBarX + l.progressBarWidth + 8, l.progressY, 0xFFFFFF, false);
 
-        guiGraphics.drawString(font, "音量：" + (int) (volumeSliderValue * 100) + "%", l.panelX + 10, l.volumeY, 0xFFFFFF, false);
+        guiGraphics.drawString(font, "Volume: " + (int) (volumeSliderValue * 100) + "%", l.panelX + 10, l.volumeY, 0xFFFFFF, false);
         drawBar(guiGraphics, l.volumeBarX, l.volumeY + 4, l.volumeBarWidth, 6, volumeSliderValue, 0xFF8FD14F, 0xFF2A2A2A);
 
         guiGraphics.pose().popPose();
@@ -409,6 +439,9 @@ public class MusicPlayerScreen extends Screen {
         if (playPauseBtn != null) {
             playPauseBtn.setMessage(playPauseLabel());
         }
+        if (overlayBtn != null) {
+            overlayBtn.setMessage(overlayLabel());
+        }
     }
 
     private Component playPauseLabel() {
@@ -426,6 +459,28 @@ public class MusicPlayerScreen extends Screen {
 
     private Component actionLabel(String text, ChatFormatting color) {
         return Component.literal(text).withStyle(color);
+    }
+
+    private Component overlayLabel() {
+        return toggleStyleLabel("Overlay", MusicManager.getInstance().isNowPlayingOverlayEnabled());
+    }
+
+    private void syncPageToCurrentTrack(boolean rebuildIfChanged) {
+        int currentTrackIndex = MusicManager.getInstance().getCurrentTrackIndex();
+        int targetPage = pageForTrackIndex(currentTrackIndex);
+        if (targetPage != currentPage) {
+            currentPage = targetPage;
+            if (rebuildIfChanged) {
+                this.rebuildWidgets();
+            }
+        }
+    }
+
+    private int pageForTrackIndex(int trackIndex) {
+        if (trackIndex < 0) {
+            return 0;
+        }
+        return trackIndex / ITEMS_PER_PAGE;
     }
 
     @Override
