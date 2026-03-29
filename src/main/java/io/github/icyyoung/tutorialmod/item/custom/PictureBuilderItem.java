@@ -38,10 +38,7 @@ public class PictureBuilderItem extends Item {
     private static final String TAG_PICTURE_INDEX = "picture_index";
     private static final Path PICTURE_DIR = FMLPaths.GAMEDIR.get().resolve("tutorialmod").resolve("picture_builder");
 
-    private static final int ABSOLUTE_MAX_WIDTH = 1024;
-    private static final int ABSOLUTE_MAX_HEIGHT = 256;
-    private static final int WORKING_MAX_WIDTH = 64;
-    private static final int WORKING_MAX_HEIGHT = 64;
+    private static final int MAX_BUILD_HEIGHT = 256;
     private static final int ALPHA_AIR_THRESHOLD = 32;
 
     private static final List<PaletteEntry> PALETTE = List.of(
@@ -283,28 +280,22 @@ public class PictureBuilderItem extends Item {
             return null;
         }
 
-        int[] absolute = scaleDimensions(width, height, ABSOLUTE_MAX_WIDTH, ABSOLUTE_MAX_HEIGHT);
-        int[] working = scaleDimensions(absolute[0], absolute[1], WORKING_MAX_WIDTH, WORKING_MAX_HEIGHT);
-
-        if (working[0] == width && working[1] == height) {
+        if (height <= MAX_BUILD_HEIGHT) {
             return toArgbImage(source);
         }
 
-        BufferedImage target = new BufferedImage(working[0], working[1], BufferedImage.TYPE_INT_ARGB);
+        double scale = Math.min(1.0D, (double) MAX_BUILD_HEIGHT / height);
+        int targetWidth = Math.max(1, (int) Math.floor(width * scale));
+        int targetHeight = Math.max(1, (int) Math.floor(height * scale));
+
+        BufferedImage target = new BufferedImage(targetWidth, targetHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = target.createGraphics();
         graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
         graphics.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        graphics.drawImage(source, 0, 0, working[0], working[1], null);
+        graphics.drawImage(source, 0, 0, targetWidth, targetHeight, null);
         graphics.dispose();
         return target;
-    }
-
-    private static int[] scaleDimensions(int sourceWidth, int sourceHeight, int maxWidth, int maxHeight) {
-        double scale = Math.min(1.0D, Math.min((double) maxWidth / sourceWidth, (double) maxHeight / sourceHeight));
-        int targetWidth = Math.max(1, (int) Math.floor(sourceWidth * scale));
-        int targetHeight = Math.max(1, (int) Math.floor(sourceHeight * scale));
-        return new int[]{targetWidth, targetHeight};
     }
 
     private static BufferedImage toArgbImage(BufferedImage source) {
