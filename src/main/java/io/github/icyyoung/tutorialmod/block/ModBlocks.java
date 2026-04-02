@@ -66,6 +66,10 @@ public class ModBlocks {
             () -> new SoundBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3f).sound(ModSounds.SOUND_BLOCK_SOUNDS)));
     public static final DeferredBlock<Block> CHAIR = registerBlock("chair",
             () -> new ChairBlock(BlockBehaviour.Properties.of().noOcclusion()));
+    public static final DeferredBlock<Block> SAPPHIRE_PORTAL = BLOCKS.register("sapphire_portal",
+            () -> new SapphirePortalBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_PORTAL)
+                    .strength(-1.0F)
+                    .noLootTable()));
 
     public static final DeferredBlock<Block> SAPPHIRE_STAIRS = registerBlock("sapphire_stairs",
             () -> new StairBlock((ModBlocks.SAPPHIRE_BLOCK.get().defaultBlockState()),

@@ -4,7 +4,11 @@ import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.item.ModItems;
 import io.github.icyyoung.tutorialmod.potion.ModPotions;
 import io.github.icyyoung.tutorialmod.villager.ModVillagers;
+import io.github.icyyoung.tutorialmod.world.ModDimensions;
+import io.github.icyyoung.tutorialmod.world.portal.SapphirePortalShape;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +20,8 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
 
@@ -96,4 +102,42 @@ public class ModEvents {
 
         builder.addMix(Potions.AWKWARD, Items.SLIME_BALL, ModPotions.SLIMEY_POTION);
     }
+
+        @SubscribeEvent
+        public static void onSapphirePortalIgnite(PlayerInteractEvent.RightClickBlock event) {
+                if (event.getLevel().isClientSide() || event.getFace() == null) {
+                        return;
+                }
+
+                if (!event.getItemStack().is(Items.FLINT_AND_STEEL)) {
+                        return;
+                }
+
+                if (!(event.getLevel() instanceof net.minecraft.server.level.ServerLevel serverLevel)) {
+                        return;
+                }
+
+                if (SapphirePortalShape.trySpawnPortal(serverLevel, event.getPos().relative(event.getFace()))) {
+                        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+                                event.getItemStack().hurtAndBreak(1, serverLevel, serverPlayer, item -> {});
+                        }
+                        event.setCanceled(true);
+                }
+        }
+
+        @SubscribeEvent
+        public static void onSapphireFlatSlimeSpawn(EntityJoinLevelEvent event) {
+                if (event.getLevel().isClientSide()) {
+                        return;
+                }
+
+                if (!(event.getEntity() instanceof Slime) || event.getLevel().dimension() != ModDimensions.SAPPHIRE_FLAT) {
+                        return;
+                }
+
+                // Keep some slimes for gameplay, but trim roughly half to avoid overwhelming flat-world swarms.
+                if (event.getLevel().random.nextFloat() < 0.5F) {
+                        event.setCanceled(true);
+                }
+        }
 }

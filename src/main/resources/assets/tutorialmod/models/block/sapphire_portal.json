@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/nether_portal",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "portal": "tutorialmod:block/mod_portal",
+    "particle": "tutorialmod:block/mod_portal"
+  }
+}

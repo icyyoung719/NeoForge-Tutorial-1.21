@@ -18,6 +18,8 @@ import io.github.icyyoung.tutorialmod.sound.ModSounds;
 import io.github.icyyoung.tutorialmod.network.ModMessages;
 import io.github.icyyoung.tutorialmod.util.ModItemProperties;
 import io.github.icyyoung.tutorialmod.villager.ModVillagers;
+import io.github.icyyoung.tutorialmod.world.ModDimensions;
+import io.github.icyyoung.tutorialmod.world.ModDimensions;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -116,7 +118,12 @@ public class TutorialMod
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-
+        var sapphireFlat = event.getServer().getLevel(ModDimensions.SAPPHIRE_FLAT);
+        if (sapphireFlat == null) {
+            LOGGER.warn("Dimension tutorialmod:sapphire_flat is NOT loaded. Check data/tutorialmod/dimension and dimension_type resources.");
+        } else {
+            LOGGER.info("Dimension tutorialmod:sapphire_flat loaded successfully: {}", sapphireFlat.dimension().location());
+        }
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
