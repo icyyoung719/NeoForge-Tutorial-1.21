@@ -2,12 +2,10 @@
   "variants": {
     "axis=x": {
       "model": "tutorialmod:block/sapphire_portal",
-      "x": 90,
       "y": 90
     },
     "axis=z": {
-      "model": "tutorialmod:block/sapphire_portal",
-      "x": 90
+      "model": "tutorialmod:block/sapphire_portal"
     }
   }
 }

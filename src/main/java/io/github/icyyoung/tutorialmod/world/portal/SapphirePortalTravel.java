@@ -9,7 +9,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 
 public final class SapphirePortalTravel {
-    private static final int SEARCH_RADIUS = 20;
+    private static final int SEARCH_RADIUS = 128;
 
     private SapphirePortalTravel() {
     }
@@ -34,26 +34,29 @@ public final class SapphirePortalTravel {
     }
 
     private static BlockPos findNearbyPortal(ServerLevel level, BlockPos center) {
-        int minY = Math.max(level.getMinBuildHeight() + 1, center.getY() - SEARCH_RADIUS);
-        int maxY = Math.min(level.getMaxBuildHeight() - 2, center.getY() + SEARCH_RADIUS);
+        int minY = level.getMinBuildHeight() + 1;
+        int maxY = level.getMaxBuildHeight() - 2;
+        BlockPos best = null;
+        double bestDistanceSq = Double.MAX_VALUE;
 
-        for (int r = 0; r <= SEARCH_RADIUS; r++) {
-            for (int dx = -r; dx <= r; dx++) {
-                for (int dz = -r; dz <= r; dz++) {
-                    if (Math.abs(dx) != r && Math.abs(dz) != r) {
+        for (int dx = -SEARCH_RADIUS; dx <= SEARCH_RADIUS; dx++) {
+            for (int dz = -SEARCH_RADIUS; dz <= SEARCH_RADIUS; dz++) {
+                for (int y = minY; y <= maxY; y++) {
+                    BlockPos candidate = new BlockPos(center.getX() + dx, y, center.getZ() + dz);
+                    BlockState state = level.getBlockState(candidate);
+                    if (!state.is(io.github.icyyoung.tutorialmod.block.ModBlocks.SAPPHIRE_PORTAL.get())) {
                         continue;
                     }
-                    for (int y = minY; y <= maxY; y++) {
-                        BlockPos candidate = new BlockPos(center.getX() + dx, y, center.getZ() + dz);
-                        BlockState state = level.getBlockState(candidate);
-                        if (state.is(io.github.icyyoung.tutorialmod.block.ModBlocks.SAPPHIRE_PORTAL.get())) {
-                            return candidate;
-                        }
+
+                    double distanceSq = candidate.distSqr(center);
+                    if (distanceSq < bestDistanceSq) {
+                        bestDistanceSq = distanceSq;
+                        best = candidate;
                     }
                 }
             }
         }
 
-        return null;
+        return best;
     }
 }
