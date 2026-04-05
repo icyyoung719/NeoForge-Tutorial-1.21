@@ -1,8 +1,31 @@
 {
-  "parent": "minecraft:block/nether_portal",
+  "ambientocclusion": false,
   "render_type": "minecraft:translucent",
   "textures": {
-    "portal": "tutorialmod:block/mod_portal",
-    "particle": "tutorialmod:block/mod_portal"
-  }
+    "portal": "tutorialmod:block/sapphire_portal",
+    "particle": "tutorialmod:block/sapphire_portal"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        6.5
+      ],
+      "to": [
+        16,
+        16,
+        9.5
+      ],
+      "shade": false,
+      "faces": {
+        "east": {
+          "texture": "#portal"
+        },
+        "west": {
+          "texture": "#portal"
+        }
+      }
+    }
+  ]
 }

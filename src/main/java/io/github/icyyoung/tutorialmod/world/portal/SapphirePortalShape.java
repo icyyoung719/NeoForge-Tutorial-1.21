@@ -16,6 +16,7 @@ public final class SapphirePortalShape {
     private static final int MAX_WIDTH = 21;
     private static final int MIN_HEIGHT = 3;
     private static final int MAX_HEIGHT = 21;
+    private static final ThreadLocal<Integer> PORTAL_BUILD_DEPTH = ThreadLocal.withInitial(() -> 0);
 
     private final BlockPos bottomLeft;
     private final Direction.Axis axis;
@@ -41,6 +42,10 @@ public final class SapphirePortalShape {
                 .orElse(false);
     }
 
+    public static boolean isPortalConstructionInProgress() {
+        return PORTAL_BUILD_DEPTH.get() > 0;
+    }
+
     public static boolean isPortalStillValid(LevelAccessor level, BlockPos portalPos, Direction.Axis axis) {
         return findExisting(level, portalPos, axis).isPresent();
     }
@@ -48,16 +53,21 @@ public final class SapphirePortalShape {
     public static BlockPos createMinimalPortal(LevelAccessor level, BlockPos bottomLeftInterior, Direction.Axis axis) {
         Direction widthDir = axis == Direction.Axis.X ? Direction.EAST : Direction.SOUTH;
 
-        for (int x = -1; x <= 2; x++) {
-            for (int y = -1; y <= 3; y++) {
-                BlockPos target = bottomLeftInterior.relative(widthDir, x).above(y);
-                boolean isFrame = x == -1 || x == 2 || y == -1 || y == 3;
-                if (isFrame) {
-                    level.setBlock(target, ModBlocks.SAPPHIRE_BLOCK.get().defaultBlockState(), Block.UPDATE_ALL);
-                } else {
-                    level.setBlock(target, ModBlocks.SAPPHIRE_PORTAL.get().defaultBlockState().setValue(NetherPortalBlock.AXIS, axis), Block.UPDATE_ALL);
+        beginPortalBuild();
+        try {
+            for (int x = -1; x <= 2; x++) {
+                for (int y = -1; y <= 3; y++) {
+                    BlockPos target = bottomLeftInterior.relative(widthDir, x).above(y);
+                    boolean isFrame = x == -1 || x == 2 || y == -1 || y == 3;
+                    if (isFrame) {
+                        level.setBlock(target, ModBlocks.SAPPHIRE_BLOCK.get().defaultBlockState(), Block.UPDATE_ALL);
+                    } else {
+                        level.setBlock(target, ModBlocks.SAPPHIRE_PORTAL.get().defaultBlockState().setValue(NetherPortalBlock.AXIS, axis), Block.UPDATE_ALL);
+                    }
                 }
             }
+        } finally {
+            endPortalBuild();
         }
 
         return bottomLeftInterior.above();
@@ -198,10 +208,28 @@ public final class SapphirePortalShape {
 
     private void createPortalBlocks(LevelAccessor level) {
         BlockState portalState = ModBlocks.SAPPHIRE_PORTAL.get().defaultBlockState().setValue(NetherPortalBlock.AXIS, axis);
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                level.setBlock(bottomLeft.relative(widthDirection, x).above(y), portalState, Block.UPDATE_ALL);
+        beginPortalBuild();
+        try {
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    level.setBlock(bottomLeft.relative(widthDirection, x).above(y), portalState, Block.UPDATE_ALL);
+                }
             }
+        } finally {
+            endPortalBuild();
+        }
+    }
+
+    private static void beginPortalBuild() {
+        PORTAL_BUILD_DEPTH.set(PORTAL_BUILD_DEPTH.get() + 1);
+    }
+
+    private static void endPortalBuild() {
+        int depth = PORTAL_BUILD_DEPTH.get() - 1;
+        if (depth <= 0) {
+            PORTAL_BUILD_DEPTH.remove();
+        } else {
+            PORTAL_BUILD_DEPTH.set(depth);
         }
     }
 }

@@ -39,6 +39,10 @@ public class SapphirePortalBlock extends NetherPortalBlock {
     @Override
     protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState,
                                      LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if (SapphirePortalShape.isPortalConstructionInProgress()) {
+            return state;
+        }
+
         Direction.Axis axis = state.getValue(AXIS);
         if (direction.getAxis().isHorizontal() && !SapphirePortalShape.isPortalStillValid(level, pos, axis)) {
             return Blocks.AIR.defaultBlockState();
