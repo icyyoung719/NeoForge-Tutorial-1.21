@@ -4,8 +4,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -36,10 +38,16 @@ import java.util.stream.Stream;
 
 public class PictureBuilderItem extends Item {
     private static final String TAG_PICTURE_INDEX = "picture_index";
+    private static final String TAG_PLACEMENT_MODE = "placement_mode";
     private static final Path PICTURE_DIR = FMLPaths.GAMEDIR.get().resolve("tutorialmod").resolve("picture_builder");
 
     private static final int MAX_BUILD_HEIGHT = 256;
     private static final int ALPHA_AIR_THRESHOLD = 32;
+
+    private enum PlacementMode {
+        WALL,
+        FLOOR
+    }
 
     private static final List<PaletteEntry> PALETTE = List.of(
             entry(Blocks.WHITE_WOOL, 233, 236, 236),
@@ -103,6 +111,22 @@ public class PictureBuilderItem extends Item {
     }
 
     @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (!player.isCrouching()) {
+            return InteractionResultHolder.pass(stack);
+        }
+
+        if (!level.isClientSide) {
+            PlacementMode nextMode = togglePlacementMode(stack);
+            player.sendSystemMessage(Component.translatable("message.tutorialmod.picture_builder.placement_mode_switched",
+                    Component.translatable(getPlacementModeTranslationKey(nextMode))));
+        }
+
+        return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+    }
+
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         Player player = context.getPlayer();
@@ -126,28 +150,37 @@ public class PictureBuilderItem extends Item {
             setPictureIndex(stack, nextIndex);
             SelectionResult switched = getSelection(nextIndex);
             if (switched != null) {
-                player.sendSystemMessage(Component.translatable("message.tutorialmod.picture_builder.mode_switched", switched.displayName()));
+                player.sendSystemMessage(Component.translatable("message.tutorialmod.picture_builder.picture_switched", switched.displayName()));
             }
             return InteractionResult.SUCCESS;
         }
 
         BlockPos origin = context.getClickedPos().above();
         Direction front = player.getDirection().getOpposite();
+        PlacementMode placementMode = getPlacementMode(stack);
 
-        placePicture(serverLevel, origin, front, selection.picture());
+        if (placementMode == PlacementMode.FLOOR) {
+            placeFloorPicture(serverLevel, origin, front, selection.picture());
+        } else {
+            placeWallPicture(serverLevel, origin, front, selection.picture());
+        }
 
         if (!player.getAbilities().instabuild) {
             stack.shrink(1);
         }
 
-        player.sendSystemMessage(Component.translatable("message.tutorialmod.picture_builder.success", selection.displayName()));
+        player.sendSystemMessage(Component.translatable("message.tutorialmod.picture_builder.success",
+            Component.translatable(getPlacementModeTranslationKey(placementMode)), selection.displayName()));
         return InteractionResult.SUCCESS;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("tooltip.tutorialmod.picture_builder.tooltip"));
-        tooltipComponents.add(Component.translatable("tooltip.tutorialmod.picture_builder.switch"));
+        tooltipComponents.add(Component.translatable("tooltip.tutorialmod.picture_builder.mode",
+                Component.translatable(getPlacementModeTranslationKey(getPlacementMode(stack)))));
+        tooltipComponents.add(Component.translatable("tooltip.tutorialmod.picture_builder.switch_picture"));
+        tooltipComponents.add(Component.translatable("tooltip.tutorialmod.picture_builder.switch_mode"));
         tooltipComponents.add(Component.translatable("tooltip.tutorialmod.picture_builder.tooltip_clear"));
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
@@ -161,6 +194,33 @@ public class PictureBuilderItem extends Item {
         var tag = customData.copyTag();
         tag.putInt(TAG_PICTURE_INDEX, index);
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+    }
+
+    private static PlacementMode getPlacementMode(ItemStack stack) {
+        int index = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getInt(TAG_PLACEMENT_MODE);
+        PlacementMode[] values = PlacementMode.values();
+        return values[Math.floorMod(index, values.length)];
+    }
+
+    private static PlacementMode togglePlacementMode(ItemStack stack) {
+        PlacementMode[] values = PlacementMode.values();
+        PlacementMode nextMode = values[Math.floorMod(getPlacementMode(stack).ordinal() + 1, values.length)];
+        setPlacementMode(stack, nextMode);
+        return nextMode;
+    }
+
+    private static void setPlacementMode(ItemStack stack, PlacementMode mode) {
+        CustomData customData = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY);
+        var tag = customData.copyTag();
+        tag.putInt(TAG_PLACEMENT_MODE, mode.ordinal());
+        stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+    }
+
+    private static String getPlacementModeTranslationKey(PlacementMode mode) {
+        return switch (mode) {
+            case WALL -> "tooltip.tutorialmod.picture_builder.mode.wall";
+            case FLOOR -> "tooltip.tutorialmod.picture_builder.mode.floor";
+        };
     }
 
     private static int getNextIndex(int current) {
@@ -358,7 +418,7 @@ public class PictureBuilderItem extends Item {
     }
 
     @SuppressWarnings("deprecation")
-    private static void placePicture(ServerLevel level, BlockPos origin, Direction front, ProcessedPicture picture) {
+    private static void placeWallPicture(ServerLevel level, BlockPos origin, Direction front, ProcessedPicture picture) {
         int width = picture.width();
         int height = picture.height();
         Rotation rotation = rotationFromFront(front);
@@ -385,6 +445,24 @@ public class PictureBuilderItem extends Item {
         }
     }
 
+    private static void placeFloorPicture(ServerLevel level, BlockPos origin, Direction front, ProcessedPicture picture) {
+        int width = picture.width();
+        int height = picture.height();
+
+        for (int imageZ = 0; imageZ < height; imageZ++) {
+            int localZ = (height - 1) - imageZ;
+            for (int x = 0; x < width; x++) {
+                BlockState state = picture.blockAt(x, imageZ);
+                if (state.isAir()) {
+                    continue;
+                }
+
+                BlockPos worldPos = toFloorWorld(origin, front, x, localZ);
+                level.setBlock(worldPos, state, Block.UPDATE_ALL);
+            }
+        }
+    }
+
     private static Rotation rotationFromFront(Direction front) {
         return switch (front) {
             case SOUTH -> Rotation.NONE;
@@ -398,6 +476,11 @@ public class PictureBuilderItem extends Item {
     private static BlockPos toWorld(BlockPos origin, Direction front, int localX, int localY, int localZ) {
         Direction right = front.getClockWise();
         return origin.relative(right, localX).relative(front, localZ).above(localY);
+    }
+
+    private static BlockPos toFloorWorld(BlockPos origin, Direction front, int localX, int localZ) {
+        Direction right = front.getClockWise();
+        return origin.relative(right, localX).relative(front, localZ);
     }
 
     private static PaletteEntry entry(Block block, int red, int green, int blue) {

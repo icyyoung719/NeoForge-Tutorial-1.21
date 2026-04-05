@@ -126,11 +126,16 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.tutorialmod.villager_builder.mode_switched", "Villager template switched to: %s");
 
         add("tooltip.tutorialmod.picture_builder.tooltip", "Right-click to build pixel art from images in run/tutorialmod/picture_builder.");
-        add("tooltip.tutorialmod.picture_builder.switch", "Sneak + right-click to switch image file.");
-        add("tooltip.tutorialmod.picture_builder.tooltip_clear", "Placement clears the target wall area before building.");
+        add("tooltip.tutorialmod.picture_builder.mode", "Current placement mode: %s");
+        add("tooltip.tutorialmod.picture_builder.switch_picture", "Sneak + right-click a block to switch image file.");
+        add("tooltip.tutorialmod.picture_builder.switch_mode", "Sneak + right-click in the air to switch placement mode.");
+        add("tooltip.tutorialmod.picture_builder.tooltip_clear", "Placement replaces the target surface before building.");
         add("message.tutorialmod.picture_builder.no_image", "No valid PNG/JPG image was found in run/tutorialmod/picture_builder.");
-        add("message.tutorialmod.picture_builder.success", "Picture deployed: %s");
-        add("message.tutorialmod.picture_builder.mode_switched", "Picture switched to: %s");
+        add("message.tutorialmod.picture_builder.success", "Picture deployed in %s mode: %s");
+        add("message.tutorialmod.picture_builder.picture_switched", "Picture switched to: %s");
+        add("message.tutorialmod.picture_builder.placement_mode_switched", "Placement mode switched to: %s");
+        add("tooltip.tutorialmod.picture_builder.mode.wall", "Wall");
+        add("tooltip.tutorialmod.picture_builder.mode.floor", "Floor");
         //paintings
         add(getPaintingTitleKey("world"), "World");
         add(getPaintingAuthorKey("world"), "NanoAttack");
