@@ -4,6 +4,7 @@ import io.github.icyyoung.tutorialmod.TutorialMod;
 import io.github.icyyoung.tutorialmod.enchantment.ModEnchantments;
 import io.github.icyyoung.tutorialmod.worldgen.ModBiomeModifiers;
 import io.github.icyyoung.tutorialmod.worldgen.ModConfiguredFeatures;
+import io.github.icyyoung.tutorialmod.worldgen.ModSapphireWorldgen;
 import io.github.icyyoung.tutorialmod.worldgen.ModPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -26,6 +27,9 @@ public class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.ENCHANTMENT, ModEnchantments::bootstrap)
 
             // worldgen
+            .add(Registries.BIOME, ModSapphireWorldgen::bootstrapBiomes)
+            .add(Registries.DIMENSION_TYPE, ModSapphireWorldgen::bootstrapDimensionTypes)
+            .add(Registries.LEVEL_STEM, ModSapphireWorldgen::bootstrapLevelStems)
             .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
             .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap)

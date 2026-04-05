@@ -19,7 +19,6 @@ import io.github.icyyoung.tutorialmod.network.ModMessages;
 import io.github.icyyoung.tutorialmod.util.ModItemProperties;
 import io.github.icyyoung.tutorialmod.villager.ModVillagers;
 import io.github.icyyoung.tutorialmod.world.ModDimensions;
-import io.github.icyyoung.tutorialmod.world.ModDimensions;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -120,7 +119,7 @@ public class TutorialMod
     {
         var sapphireFlat = event.getServer().getLevel(ModDimensions.SAPPHIRE_FLAT);
         if (sapphireFlat == null) {
-            LOGGER.warn("Dimension tutorialmod:sapphire_flat is NOT loaded. Check data/tutorialmod/dimension and dimension_type resources.");
+            LOGGER.warn("Dimension tutorialmod:sapphire_flat is NOT loaded. Check datapack bootstrap and generated worldgen resources.");
         } else {
             LOGGER.info("Dimension tutorialmod:sapphire_flat loaded successfully: {}", sapphireFlat.dimension().location());
         }
